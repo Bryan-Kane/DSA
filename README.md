@@ -6,7 +6,7 @@ A personal repository to track my progress through various Data Structures and A
 
 Problems are organized by topic/category:
 - `Arrays/` - Array-related problems
-- `Linked Lists/` - Linked list problems
+- `linked-lists/` - Linked list problems
 - More categories to be added...
 
 ## Progress
