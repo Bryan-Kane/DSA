@@ -3,11 +3,11 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 5 problems
+**Total Completed**: 7 problems
 
 ---
 
-## Arrays (3/3)
+## Arrays (5/5)
 
 ### ✅ Two Sum
 - **Status**: Completed
@@ -29,6 +29,20 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Time**: O(N) | **Space**: O(N)
 - **Pattern**: Hash Set
 - **File**: `Arrays/contains-duplicate.js`
+
+### ✅ Product of Array Except Self
+- **Status**: Completed
+- **Difficulty**: Medium
+- **Time**: O(N) | **Space**: O(1) or O(N)
+- **Pattern**: Prefix/Suffix Products
+- **File**: `Arrays/product-of-array-except-self.js`
+
+### ✅ Maximum Subarray
+- **Status**: Completed
+- **Difficulty**: Medium
+- **Time**: O(N) | **Space**: O(1)
+- **Pattern**: Kadane's Algorithm (Dynamic Programming)
+- **File**: `Arrays/maximum-subarray.js`
 
 ---
 
@@ -54,4 +68,6 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - Hash maps and sets are great for O(1) lookups when dealing with duplicates or pairs
 - In-place pointer manipulation can achieve O(1) space complexity
 - Two-pointer techniques are powerful for linked list problems
+- Prefix/suffix patterns can optimize array problems by avoiding nested loops
+- Dynamic programming (like Kadane's algorithm) often involves making optimal decisions at each step
 
