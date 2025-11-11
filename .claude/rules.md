@@ -61,3 +61,16 @@ console.log(problemName(testInput)); // expected output
 - Add test cases at the bottom of each file
 - When creating new problem files, provide the problem description and empty function - DO NOT include the solution
 - Organize problems by topic/category (arrays, linked-lists, trees, etc.)
+
+## Multiple Solution Approaches
+
+For problems that can be solved both **iteratively and recursively**:
+- Include BOTH implementations in the same file
+- Name them appropriately (e.g., `invertTree()` and `invertTreeRecursion()`)
+- Include complexity analysis for each approach
+- Add test cases for both approaches
+- This applies to any problem where "can you do it recursively?" might be asked
+
+**Example**: Tree traversal, linked list reversal, etc.
+
+**Note on Solutions**: When creating the initial problem file, provide empty functions for BOTH approaches. The user will implement them. However, if the user has already solved one approach and asks for help with the alternative approach (or explicitly asks for the solution), you may provide guidance or the solution since they've already demonstrated understanding of the problem.
