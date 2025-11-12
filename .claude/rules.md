@@ -66,11 +66,11 @@ console.log(problemName(testInput)); // expected output
 
 For problems that can be solved both **iteratively and recursively**:
 - Include BOTH implementations in the same file
-- Name them appropriately (e.g., `invertTree()` and `invertTreeRecursion()`)
+- **Naming convention**: The default function name should be the iterative version. The recursive version should ALWAYS have "Recursion" in the method name (e.g., `maxDepth()` for iterative and `maxDepthRecursion()` for recursive)
 - Include complexity analysis for each approach
 - Add test cases for both approaches
 - This applies to any problem where "can you do it recursively?" might be asked
 
-**Example**: Tree traversal, linked list reversal, etc.
+**Example**: `invertTree()` and `invertTreeRecursion()`, `maxDepth()` and `maxDepthRecursion()`
 
 **Note on Solutions**: When creating the initial problem file, provide empty functions for BOTH approaches. The user will implement them. However, if the user has already solved one approach and asks for help with the alternative approach (or explicitly asks for the solution), you may provide guidance or the solution since they've already demonstrated understanding of the problem.
