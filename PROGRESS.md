@@ -3,15 +3,15 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 18 problems
-- Arrays: 8/8
+**Total Completed**: 19 problems
+- Arrays: 9/9
 - Linked Lists: 5/5
 - Trees: 2/?
 - Strings: 3/?
 
 ---
 
-## Arrays (8/8)
+## Arrays (9/9)
 
 ### ✅ Two Sum
 - **Status**: Completed
@@ -68,6 +68,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Time**: O(N) | **Space**: O(1)
 - **Pattern**: Two Pointers (Greedy)
 - **File**: `Arrays/container-with-most-water.js`
+
+### ✅ Binary Search
+- **Status**: Completed
+- **Difficulty**: Easy
+- **Time**: O(log N) | **Space**: O(1) iterative, O(log N) recursive
+- **Pattern**: Binary Search
+- **File**: `Arrays/binary-search.js`
+- **Note**: Includes both iterative and recursive solutions
 
 ---
 
@@ -167,6 +175,8 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - Binary search achieves O(log n) by eliminating half the search space each iteration
 - Dynamic programming (like Kadane's algorithm) often involves making optimal decisions at each step
 - Sorting can enable efficient two-pointer solutions for finding pairs/triplets
+- Binary search requires sorted array and works by repeatedly dividing search space in half
+- Recursive binary search uses O(log N) space due to call stack, iterative uses O(1)
 
 ### Linked Lists
 - In-place pointer manipulation can achieve O(1) space complexity
@@ -187,4 +197,8 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - Substring search with naive approach is O(N * M) where N is length of main string, M is length of pattern
 - Built-in methods like includes() and indexOf() use optimized algorithms but worst case is still O(N * M)
 - Empty string is considered a substring of any string
+- Anagrams can be checked with sorting O(N log N) or hash map O(N)
+- Sliding window pattern uses two pointers to maintain a dynamic window
+- Set/Map data structures are crucial for tracking characters in current window for O(1) lookups
+- When sliding window finds duplicate, shrink from left until duplicate is removed
 
