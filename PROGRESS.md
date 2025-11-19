@@ -3,11 +3,11 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 19 problems
+**Total Completed**: 20 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
 - Trees: 2/?
-- Strings: 3/?
+- Strings: 4/?
 
 ---
 
@@ -138,7 +138,7 @@ This file tracks my progress through Data Structures and Algorithms problems.
 
 ---
 
-## Strings (3/?)
+## Strings (4/?)
 
 ### ✅ Is String B a Substring of String A
 - **Status**: Completed
@@ -163,6 +163,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Pattern**: Sliding Window + Set
 - **File**: `strings/longest-substring-without-repeating-characters.js`
 - **Note**: Classic sliding window problem with two pointers
+
+### ✅ Valid Parentheses
+- **Status**: Completed
+- **Difficulty**: Easy
+- **Time**: O(N) | **Space**: O(N)
+- **Pattern**: Stack / Hash Map
+- **File**: `strings/valid-parentheses.js`
+- **Note**: Includes both helper array approach and optimized hash map approach
 
 ---
 
@@ -201,4 +209,6 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - Sliding window pattern uses two pointers to maintain a dynamic window
 - Set/Map data structures are crucial for tracking characters in current window for O(1) lookups
 - When sliding window finds duplicate, shrink from left until duplicate is removed
+- Stack pattern is ideal for matching/balancing problems (parentheses, brackets, etc.)
+- Hash maps can simplify conditional logic by mapping keys to values instead of multiple if/else statements
 
