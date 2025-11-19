@@ -4,10 +4,11 @@ A personal repository to track my progress through various Data Structures and A
 
 ## Progress Summary
 
-**Total Completed**: 15 problems
+**Total Completed**: 16 problems
 - Arrays: 8/8 ✅
 - Linked Lists: 5/5 ✅
 - Trees: 2/? 🔄
+- Strings: 1/? 🔄
 
 See [PROGRESS.md](./PROGRESS.md) for detailed notes and progress tracking.
 
@@ -17,6 +18,7 @@ Problems are organized by topic/category:
 - `Arrays/` - Array manipulation, two pointers, hash maps, binary search
 - `linked-lists/` - Pointer manipulation, fast & slow pointers, reversal techniques
 - `trees/` - Binary tree traversal (BFS/DFS), recursive and iterative solutions
+- `strings/` - String manipulation, pattern matching, substring search
 
 ## Key Patterns Covered
 
@@ -37,6 +39,10 @@ Problems are organized by topic/category:
 - BFS (Level-order traversal)
 - DFS (Recursive traversal)
 - Understanding O(W) vs O(H) space complexity
+
+### Strings
+- Substring search (naive O(N*M) approach)
+- Built-in string methods
 
 ## Notes
 

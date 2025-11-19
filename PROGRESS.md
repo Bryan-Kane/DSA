@@ -3,10 +3,11 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 15 problems
+**Total Completed**: 16 problems
 - Arrays: 8/8
 - Linked Lists: 5/5
 - Trees: 2/?
+- Strings: 1/?
 
 ---
 
@@ -129,6 +130,18 @@ This file tracks my progress through Data Structures and Algorithms problems.
 
 ---
 
+## Strings (1/?)
+
+### ✅ Is String B a Substring of String A
+- **Status**: Completed
+- **Difficulty**: Easy
+- **Time**: O(N * M) | **Space**: O(1)
+- **Pattern**: Brute Force / Built-in Methods
+- **File**: `strings/is-substring.js`
+- **Note**: Includes three approaches: includes(), manual implementation, and indexOf()
+
+---
+
 ## Key Patterns & Learnings
 
 ### Arrays
@@ -153,4 +166,9 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - For skewed trees: O(H) = O(N) (worst case, degenerates to linked list)
 - Level-order traversal naturally uses BFS
 - Most tree problems can be solved both iteratively and recursively
+
+### Strings
+- Substring search with naive approach is O(N * M) where N is length of main string, M is length of pattern
+- Built-in methods like includes() and indexOf() use optimized algorithms but worst case is still O(N * M)
+- Empty string is considered a substring of any string
 
