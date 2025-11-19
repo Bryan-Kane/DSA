@@ -3,11 +3,11 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 16 problems
+**Total Completed**: 18 problems
 - Arrays: 8/8
 - Linked Lists: 5/5
 - Trees: 2/?
-- Strings: 1/?
+- Strings: 3/?
 
 ---
 
@@ -130,7 +130,7 @@ This file tracks my progress through Data Structures and Algorithms problems.
 
 ---
 
-## Strings (1/?)
+## Strings (3/?)
 
 ### ✅ Is String B a Substring of String A
 - **Status**: Completed
@@ -139,6 +139,22 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Pattern**: Brute Force / Built-in Methods
 - **File**: `strings/is-substring.js`
 - **Note**: Includes three approaches: includes(), manual implementation, and indexOf()
+
+### ✅ Valid Anagram
+- **Status**: Completed
+- **Difficulty**: Easy
+- **Time**: O(N) | **Space**: O(N)
+- **Pattern**: Hash Map / Sorting
+- **File**: `strings/valid-anagram.js`
+- **Note**: Includes both sorting and hash map approaches
+
+### 🔄 Longest Substring Without Repeating Characters
+- **Status**: Return To (Need More Practice)
+- **Difficulty**: Medium
+- **Time**: O(N) | **Space**: O(min(N, M))
+- **Pattern**: Sliding Window + Set
+- **File**: `strings/longest-substring-without-repeating-characters.js`
+- **Note**: Classic sliding window problem with two pointers
 
 ---
 
