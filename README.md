@@ -45,6 +45,7 @@ Problems are organized by topic/category:
 - Built-in string methods
 - Sliding Window technique
 - Hash Map/Set for character tracking
+- Stack pattern for matching/balancing problems
 
 ## Notes
 
