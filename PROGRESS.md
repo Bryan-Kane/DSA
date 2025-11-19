@@ -3,11 +3,11 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 20 problems
+**Total Completed**: 21 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
 - Trees: 2/?
-- Strings: 4/?
+- Strings: 5/?
 
 ---
 
@@ -172,6 +172,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **File**: `strings/valid-parentheses.js`
 - **Note**: Includes both helper array approach and optimized hash map approach
 
+### 🔄 Group Anagrams
+- **Status**: Return To (Need More Practice - Complexity Analysis)
+- **Difficulty**: Medium
+- **Time**: O(N * K log K) | **Space**: O(N * K)
+- **Pattern**: Hash Map + Sorting
+- **File**: `strings/group-anagrams.js`
+- **Note**: Logic correct on first try, but time/space complexity requires more understanding
+
 ---
 
 ## Key Patterns & Learnings
@@ -211,4 +219,6 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - When sliding window finds duplicate, shrink from left until duplicate is removed
 - Stack pattern is ideal for matching/balancing problems (parentheses, brackets, etc.)
 - Hash maps can simplify conditional logic by mapping keys to values instead of multiple if/else statements
+- When analyzing complexity with nested operations, multiply them (e.g., N strings * K log K sort = O(N * K log K))
+- Grouping anagrams: sort each string as key for O(N * K log K), or use character count for O(N * K)
 
