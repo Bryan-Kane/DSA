@@ -7,15 +7,14 @@
  * Example:
  * Input: str = "abcabcbb"
  * Output: 3
- * Explanation: The answer is "abc", with the length of 3.
  *
  * Constraints:
  * - 0 <= str.length <= 5 * 10^4
  * - str consists of English letters, digits, symbols and spaces
  *
  * Target Complexity:
- * Time: O(N) Loop through every character in the string
- * Space: O(min(N,M)) at most store the max substring
+ * Time: O(?)
+ * Space: O(?)
  */
 
 function lengthOfLongestSubstring(str) {
@@ -28,15 +27,11 @@ function lengthOfLongestSubstring(str) {
       left++;
     }
     set.add(str[right]);
-    maxLength = Math.max(maxLength, right-left + 1);
+    maxLength = Math.max(maxLength,right - left + 1);
   }
   return maxLength;
-
-
+  // Your code here
 }
-
-// Time: O(N) - each character is visited at most twice (once by right, once by left)
-// Space: O(min(N, M)) where M is the character set size (26 for lowercase, 128 for ASCII, etc.)
 
 // Tests
 console.log(lengthOfLongestSubstring("abcabcbb"));    // 3
