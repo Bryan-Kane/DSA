@@ -3,10 +3,10 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 24 problems
+**Total Completed**: 25 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
-- Trees: 5/?
+- Trees: 6/?
 - Strings: 5/?
 
 ---
@@ -118,7 +118,7 @@ This file tracks my progress through Data Structures and Algorithms problems.
 
 ---
 
-## Trees (3/?)
+## Trees (6/?)
 
 ### ✅ Invert Binary Tree
 - **Status**: Completed
@@ -159,6 +159,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Pattern**: BFS with Level Tracking / DFS with Closure
 - **File**: `trees/binary-tree-level-order-traversal.js`
 - **Note**: Key patterns: BFS uses levelSize to process one level at a time, DFS uses closure over result array with level parameter
+
+### 🔄 Minimum Depth of Binary Tree
+- **Status**: Return To (DFS Edge Case Handling)
+- **Difficulty**: Easy
+- **Time**: O(N) | **Space**: O(W) BFS, O(H) DFS
+- **Pattern**: BFS Level-order / DFS Recursive with Edge Cases
+- **File**: `trees/minimum-depth-of-binary-tree.js`
+- **Note**: BFS returns early when finding first leaf. DFS is tricky: must handle nodes with only one child (can't just use Math.min)
 
 ---
 
@@ -237,6 +245,8 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - For symmetric tree, compare mirror positions: left.left with right.right, left.right with right.left
 - Level-order BFS: capture levelSize before inner loop to process exactly one level at a time
 - Level-order DFS: use closure over result array, check if result.length === level to create new level arrays
+- Minimum depth BFS: return immediately upon finding first leaf node (early exit optimization)
+- Minimum depth DFS: handle edge case where node has only one child - can't use Math.min(0, depth) blindly
 
 ### Strings
 - Substring search with naive approach is O(N * M) where N is length of main string, M is length of pattern
