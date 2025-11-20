@@ -3,10 +3,10 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 23 problems
+**Total Completed**: 24 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
-- Trees: 4/?
+- Trees: 5/?
 - Strings: 5/?
 
 ---
@@ -152,6 +152,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **File**: `trees/symmetric-tree.js`
 - **Note**: Similar to Same Tree but compares mirror positions (left.left vs right.right, left.right vs right.left)
 
+### 🔄 Binary Tree Level Order Traversal
+- **Status**: Return To (Common Interview Question)
+- **Difficulty**: Medium
+- **Time**: O(N) | **Space**: O(W) BFS, O(H) DFS
+- **Pattern**: BFS with Level Tracking / DFS with Closure
+- **File**: `trees/binary-tree-level-order-traversal.js`
+- **Note**: Key patterns: BFS uses levelSize to process one level at a time, DFS uses closure over result array with level parameter
+
 ---
 
 ## Strings (4/?)
@@ -227,6 +235,8 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - When comparing two trees, process both simultaneously (parallel queues for BFS, parallel recursion for DFS)
 - Base cases for tree comparisons: both null (true), one null (false), values differ (false)
 - For symmetric tree, compare mirror positions: left.left with right.right, left.right with right.left
+- Level-order BFS: capture levelSize before inner loop to process exactly one level at a time
+- Level-order DFS: use closure over result array, check if result.length === level to create new level arrays
 
 ### Strings
 - Substring search with naive approach is O(N * M) where N is length of main string, M is length of pattern
