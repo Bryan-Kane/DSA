@@ -3,10 +3,10 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 22 problems
+**Total Completed**: 23 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
-- Trees: 3/?
+- Trees: 4/?
 - Strings: 5/?
 
 ---
@@ -144,6 +144,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **File**: `trees/same-tree.js`
 - **Note**: Includes both BFS (queue-based) and DFS (recursive) approaches
 
+### ✅ Symmetric Tree
+- **Status**: Completed
+- **Difficulty**: Easy
+- **Time**: O(N) | **Space**: O(W) BFS, O(H) DFS
+- **Pattern**: BFS with Queue / DFS Recursive (Mirror Comparison)
+- **File**: `trees/symmetric-tree.js`
+- **Note**: Similar to Same Tree but compares mirror positions (left.left vs right.right, left.right vs right.left)
+
 ---
 
 ## Strings (4/?)
@@ -218,6 +226,7 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - Most tree problems can be solved both iteratively and recursively
 - When comparing two trees, process both simultaneously (parallel queues for BFS, parallel recursion for DFS)
 - Base cases for tree comparisons: both null (true), one null (false), values differ (false)
+- For symmetric tree, compare mirror positions: left.left with right.right, left.right with right.left
 
 ### Strings
 - Substring search with naive approach is O(N * M) where N is length of main string, M is length of pattern
