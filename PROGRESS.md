@@ -3,10 +3,10 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 21 problems
+**Total Completed**: 22 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
-- Trees: 2/?
+- Trees: 3/?
 - Strings: 5/?
 
 ---
@@ -118,7 +118,7 @@ This file tracks my progress through Data Structures and Algorithms problems.
 
 ---
 
-## Trees (2/?)
+## Trees (3/?)
 
 ### ✅ Invert Binary Tree
 - **Status**: Completed
@@ -135,6 +135,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Pattern**: BFS Level-order / DFS Recursive
 - **File**: `trees/maximum-depth-of-binary-tree.js`
 - **Note**: Includes both iterative and recursive solutions
+
+### ✅ Same Tree
+- **Status**: Completed
+- **Difficulty**: Easy
+- **Time**: O(N) | **Space**: O(W) BFS, O(H) DFS
+- **Pattern**: BFS with Queue / DFS Recursive
+- **File**: `trees/same-tree.js`
+- **Note**: Includes both BFS (queue-based) and DFS (recursive) approaches
 
 ---
 
@@ -208,6 +216,8 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - For skewed trees: O(H) = O(N) (worst case, degenerates to linked list)
 - Level-order traversal naturally uses BFS
 - Most tree problems can be solved both iteratively and recursively
+- When comparing two trees, process both simultaneously (parallel queues for BFS, parallel recursion for DFS)
+- Base cases for tree comparisons: both null (true), one null (false), values differ (false)
 
 ### Strings
 - Substring search with naive approach is O(N * M) where N is length of main string, M is length of pattern
