@@ -27,12 +27,19 @@
  */
 
 function groupAnagrams(strs) {
+  let result = [];
   let map = new Map();
   for(let i =0;i<strs.length;i++){
-    let sorted = strs[i].split('').sort().join('');
-    map.set(sorted, map.has(sorted) ? [...map.get(sorted), strs[i]] : [strs[i]]);
+    let item = strs[i].split('').sort().join('');
+    if(map.has(item)){
+      let pos = map.get(item);
+      result[pos].push(strs[i]);
+    } else{
+      map.set(item,result.length);
+      result.push([strs[i]])
+    }
   }
-  return [...map.values()];
+  return result;
 }
 
 // Tests

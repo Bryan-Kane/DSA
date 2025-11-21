@@ -204,13 +204,13 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **File**: `strings/valid-parentheses.js`
 - **Note**: Includes both helper array approach and optimized hash map approach
 
-### 🔄 Group Anagrams
-- **Status**: Return To (Need More Practice - Complexity Analysis)
+### ✅ Group Anagrams
+- **Status**: Completed (Reviewed and Re-solved)
 - **Difficulty**: Medium
 - **Time**: O(N * K log K) | **Space**: O(N * K)
 - **Pattern**: Hash Map + Sorting
 - **File**: `strings/group-anagrams.js`
-- **Note**: Logic correct on first try, but time/space complexity requires more understanding
+- **Note**: Sort each string as key. Map stores indices to result array. Time complexity: N strings × K log K sorting. Space: N×K matrix-like structure
 
 ---
 
