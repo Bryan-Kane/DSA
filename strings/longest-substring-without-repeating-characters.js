@@ -13,23 +13,23 @@
  * - str consists of English letters, digits, symbols and spaces
  *
  * Target Complexity:
- * Time: O(?)
- * Space: O(?)
+ * Time: O(N) loop through every character in the parameter
+ * Space: O(N) set can potentially be as large as the str
  */
 
 function lengthOfLongestSubstring(str) {
-  let maxLength = 0;
-  let left = 0;
   let set = new Set();
-  for(let right = 0;right<str.length;right++){
-    while(set.has(str[right])){
+  let length = 0;
+  let left = 0;
+  for(let i = 0;i<str.length;i++){
+    while(set.has(str[i])){
       set.delete(str[left]);
       left++;
     }
-    set.add(str[right]);
-    maxLength = Math.max(maxLength,right - left + 1);
+    set.add(str[i]);
+    length = Math.max(length,i - left + 1);
   }
-  return maxLength;
+  return length;
   // Your code here
 }
 

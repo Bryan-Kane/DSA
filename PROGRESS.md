@@ -189,12 +189,12 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Note**: Includes both sorting and hash map approaches
 
 ### 🔄 Longest Substring Without Repeating Characters
-- **Status**: Return To (Need More Practice)
+- **Status**: Return To (While Loop Pattern)
 - **Difficulty**: Medium
-- **Time**: O(N) | **Space**: O(min(N, M))
+- **Time**: O(N) | **Space**: O(N)
 - **Pattern**: Sliding Window + Set
 - **File**: `strings/longest-substring-without-repeating-characters.js`
-- **Note**: Classic sliding window problem with two pointers
+- **Note**: CRITICAL: Use WHILE loop (not if) to shrink window until duplicate removed. Common mistake: if only removes one char, while keeps removing until duplicate gone. Window size = i - left + 1
 
 ### ✅ Valid Parentheses
 - **Status**: Completed
