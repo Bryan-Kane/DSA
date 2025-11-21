@@ -25,10 +25,10 @@ class TreeNode {
     this.right = right;
   }
 }
+//Space: O(W) stack gets as large as the width
+//Time: O(N) Every node gets hit once?
 
 // BFS approach - uses queue
-// Time: O(N) - visit each node once
-// Space: O(W) - queue holds widest level (worst case N/2 for complete tree)
 function levelOrder(root) {
   if(root === null){
     return [];
@@ -36,43 +36,42 @@ function levelOrder(root) {
   let result = [];
   let queue = [root];
   while(queue.length > 0){
-    let levelSize = queue.length;
+    let length = queue.length;
     let level = [];
-    for(let i =0;i<levelSize;i++){
+    for(let i = 0;i<length;i++){
       let item = queue.shift();
-      if(item !== null){
-        level.push(item.val);
-        queue.push(item.left,item.right);
+      level.push(item.val);
+      if(item.left !== null){
+        queue.push(item.left);
+      }
+      if(item.right !== null){
+        queue.push(item.right);
       }
     }
-    if(level.length > 0){
-      result.push(level);
-    }
+    result.push(level);
   }
   return result;
+  
   // Your code here
 }
-
-// Time: O(N) - visit each node once
-// Space: O(H) - recursion call stack height (worst case N for skewed tree)
+//Space: O(H): Stack gets as large as the height of the tree
+//Time: O(N): Every node gets hit once
 // DFS approach - uses recursion
 function levelOrderRecursive(root) {
-  if(root === null){
-    return [];
-  }
   let result = [];
+  let level = 0;
   function dfs(node, level){
     if(node === null){
       return;
     }
     if(result.length === level){
-      result.push([]);
+      result[level] = [];
     }
     result[level].push(node.val);
     dfs(node.left, level + 1);
-    dfs(node.right, level + 1)
+    dfs(node.right, level + 1);
   }
-  dfs(root, 0);
+  dfs(root, level);
   return result;
 }
 
