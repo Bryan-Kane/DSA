@@ -3,7 +3,8 @@
  * Difficulty: Easy
  *
  * Given a binary tree, find its minimum depth.
- * The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+ * The minimum depth is the number of nodes along the shortest path from the root node 
+ * down to the nearest leaf node.
  * Note: A leaf is a node with no children.
  *
  * Example:
@@ -28,47 +29,51 @@ class TreeNode {
 }
 
 // BFS approach - uses queue
+// Time: O(N) - worst case visits all nodes (best case finds leaf early and exits)
+// Space: O(W) - queue holds widest level
 function minDepth(root) {
-  if(root == null){
+  if(root === null){
     return 0;
   }
-  let level = 1;
   let queue = [root];
+  let level = 1;
   while(queue.length > 0){
     let length = queue.length;
-    for(let i =0;i<length;i++){
-      let top = queue.shift();
-      if(top.left ===null && top.right === null){
+    for(let i = 0;i<length;i++){
+      let item = queue.shift();
+      if(item.left === null && item.right === null){
         return level;
       }
-      if(top.left !== null){
-        queue.push(top.left);
+      if(item.left !== null){
+        queue.push(item.left);
       }
-      if(top.right !== null){
-        queue.push(top.right);
+      if(item.right !== null){
+        queue.push(item.right);
       }
     }
     level++;
   }
-  return level;
   // Your code here
 }
 
 // DFS approach - uses recursion
+// Time: O(N) - visits every node once
+// Space: O(H) - recursion call stack depth equals tree height
 function minDepthRecursive(root) {
-  if(root === null) return 0;
-  
-  // Leaf node
-  if(root.left === null && root.right === null) return 1;
-  
-  // Only right child exists
-  if(root.left === null) return 1 + minDepthRecursive(root.right);
-  
-  // Only left child exists
-  if(root.right === null) return 1 + minDepthRecursive(root.left);
-  
-  // Both children exist
-  return 1 + Math.min(minDepthRecursive(root.left), minDepthRecursive(root.right));
+  if(root === null){
+    return 0;
+  }
+  if(root.left === null && root.right === null){
+    return 1;
+  }
+  if(root.left === null){
+    return 1 + minDepthRecursive(root.right);
+  }
+  if(root.right === null){
+    return 1 + minDepthRecursive(root.left);
+  }
+  return 1 + Math.min(minDepthRecursive(root.left),minDepthRecursive(root.right));
+
 }
 
 // Tests - BFS

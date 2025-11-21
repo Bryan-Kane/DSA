@@ -160,8 +160,8 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **File**: `trees/binary-tree-level-order-traversal.js`
 - **Note**: Key patterns: BFS uses levelSize to process one level at a time, DFS uses closure over result array with level parameter
 
-### 🔄 Minimum Depth of Binary Tree
-- **Status**: Return To (DFS Edge Case Handling)
+### ✅ Minimum Depth of Binary Tree
+- **Status**: Completed (Reviewed and Re-solved)
 - **Difficulty**: Easy
 - **Time**: O(N) | **Space**: O(W) BFS, O(H) DFS
 - **Pattern**: BFS Level-order / DFS Recursive with Edge Cases
