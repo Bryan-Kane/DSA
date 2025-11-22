@@ -3,13 +3,13 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 31 problems
+**Total Completed**: 32 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
 - Dynamic Programming: 4/?
-- Stacks & Queues: 2/?
+- Stacks & Queues: 3/?
 
 ---
 
@@ -252,7 +252,7 @@ This file tracks my progress through Data Structures and Algorithms problems.
 
 ---
 
-## Stacks & Queues (2/?)
+## Stacks & Queues (3/?)
 
 ### 🔄 Implement Queue using Stacks
 - **Status**: Return To (Need to review lazy transfer optimization)
@@ -269,6 +269,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Pattern**: Parallel Min Stack / Auxiliary Data Structure
 - **File**: `stacks-queues/min-stack.js`
 - **Note**: Maintain two parallel stacks: main stack stores values, minStack stores the minimum at each level. When pushing, minStack gets min(current_min, new_value). When popping, pop from both to stay synchronized. getMin() just returns top of minStack. Alternative approach: store (value, min) pairs in single stack. Key insight: need to track what the previous minimum was when current min gets popped.
+
+### ✅ Evaluate Reverse Polish Notation
+- **Status**: Completed
+- **Difficulty**: Medium
+- **Time**: O(N) | **Space**: O(N)
+- **Pattern**: Stack / Expression Evaluation
+- **File**: `stacks-queues/evaluate-rpn.js`
+- **Note**: Classic stack-based calculator. Push numbers onto stack, when operator appears pop two operands (order matters: second=a, first=b, compute a op b). Division uses Math.trunc() to truncate toward zero per problem requirements. Stack pattern: process elements left to right, operators consume top stack elements and push result back.
 
 ---
 
@@ -336,4 +344,7 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - Parallel stacks stay synchronized: push/pop on both together
 - Alternative to parallel stack: store tuples (value, metadata) in single stack
 - Key insight for min tracking: need to remember what the previous minimum was when current min gets popped
+- RPN evaluation: push operands, pop two when operator found, compute and push result back
+- Operator order matters in stack operations: second popped is left operand, first popped is right operand
+- Math.trunc() truncates toward zero (handles both positive and negative division correctly)
 
