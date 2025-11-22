@@ -3,12 +3,12 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 27 problems
+**Total Completed**: 28 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
-- Dynamic Programming: 2/?
+- Dynamic Programming: 3/?
 
 ---
 
@@ -215,7 +215,7 @@ This file tracks my progress through Data Structures and Algorithms problems.
 
 ---
 
-## Dynamic Programming (2/?)
+## Dynamic Programming (3/?)
 
 ### 🔄 Fibonacci Number
 - **Status**: Return To (4 Approaches - Foundation of DP)
@@ -232,6 +232,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Pattern**: Dynamic Programming - Same as Fibonacci with different base case
 - **File**: `dynamic-programming/climbing-stairs.js`
 - **Note**: Variant of Fibonacci pattern. Base case: n<3 returns n (gives sequence 1,2,3,5,8...). All 4 approaches: 1) Naive recursion, 2) Memoization with Map, 3) Iteration with array [0,1,2], 4) Optimized with first=1, second=2 sliding window.
+
+### 🔄 Min Cost Climbing Stairs
+- **Status**: Return To (Need to complete optimized approach)
+- **Difficulty**: Easy
+- **Time**: O(2^N) naive, O(N) memoization/iteration, O(N) optimized | **Space**: O(N) naive/memo/iteration, O(1) optimized
+- **Pattern**: Dynamic Programming - Min/Max optimization pattern
+- **File**: `dynamic-programming/min-cost-climbing-stairs.js`
+- **Note**: Different from Fibonacci - uses Math.min() to find optimal path cost instead of counting paths. Base: dp[0]=dp[1]=0 (can start at either for free). Recurrence: dp[i] = min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2]). Target is cost.length (one past end). Need to complete O(1) space optimization.
 
 ---
 

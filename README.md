@@ -4,12 +4,12 @@ A personal repository to track my progress through various Data Structures and A
 
 ## Progress Summary
 
-**Total Completed**: 27 problems
+**Total Completed**: 28 problems
 - Arrays: 9/9 ✅
 - Linked Lists: 5/5 ✅
 - Trees: 6/? 🔄
 - Strings: 5/? 🔄
-- Dynamic Programming: 2/? 🔄
+- Dynamic Programming: 3/? 🔄
 
 See [PROGRESS.md](./PROGRESS.md) for detailed notes and progress tracking.
 
