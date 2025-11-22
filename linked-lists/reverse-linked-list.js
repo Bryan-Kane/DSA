@@ -33,13 +33,13 @@ class ListNode {
 }
 
 function reverseList(head) {
-  if(head === null)
-  {
+  if(head == null){
     return null;
   }
   let node = head;
+  // Your code here
   let prev = null;
-  while(node != null){
+  while(node !== null){
     let next = node.next;
     node.next = prev;
     prev = node;
@@ -47,9 +47,6 @@ function reverseList(head) {
   }
   return prev;
 }
-
-//Space: O(1) just reversing the original in place using pointers
-//Time: O(N) loop through every item in linked list
 
 // Helper function to create linked list from array
 function createList(arr) {
