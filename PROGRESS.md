@@ -3,11 +3,12 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 25 problems
+**Total Completed**: 26 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
+- Dynamic Programming: 1/?
 
 ---
 
@@ -214,6 +215,18 @@ This file tracks my progress through Data Structures and Algorithms problems.
 
 ---
 
+## Dynamic Programming (1/?)
+
+### 🔄 Fibonacci Number
+- **Status**: Return To (4 Approaches - Foundation of DP)
+- **Difficulty**: Easy
+- **Time**: O(2^N) naive, O(N) memoization/iteration, O(N) optimized | **Space**: O(N) naive/memo/iteration, O(1) optimized
+- **Pattern**: Dynamic Programming - Recursion, Memoization, Iteration, Space Optimization
+- **File**: `dynamic-programming/fibonacci.js`
+- **Note**: Demonstrates all DP optimization levels: 1) Naive recursion O(2^N), 2) Memoization (top-down DP) O(N) time/space, 3) Iteration (bottom-up DP) O(N) time/space, 4) Optimized iteration O(N) time O(1) space. Key insight: only need last 2 values for Fibonacci.
+
+---
+
 ## Key Patterns & Learnings
 
 ### Arrays
@@ -260,4 +273,11 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - Hash maps can simplify conditional logic by mapping keys to values instead of multiple if/else statements
 - When analyzing complexity with nested operations, multiply them (e.g., N strings * K log K sort = O(N * K log K))
 - Grouping anagrams: sort each string as key for O(N * K log K), or use character count for O(N * K)
+
+### Dynamic Programming
+- Memoization = recursion + caching to avoid recalculating same subproblems
+- Top-down DP (memoization): start with problem, break down, cache results as you go
+- Bottom-up DP (iteration): start with base cases, build up to answer
+- Space optimization: often only need last few values, not entire array (e.g., Fibonacci only needs last 2)
+- Fibonacci demonstrates O(2^N) → O(N) → O(1) space optimization progression
 

@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:code.claude.com)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []

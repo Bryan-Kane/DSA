@@ -4,11 +4,12 @@ A personal repository to track my progress through various Data Structures and A
 
 ## Progress Summary
 
-**Total Completed**: 25 problems
+**Total Completed**: 26 problems
 - Arrays: 9/9 ✅
 - Linked Lists: 5/5 ✅
 - Trees: 6/? 🔄
 - Strings: 5/? 🔄
+- Dynamic Programming: 1/? 🔄
 
 See [PROGRESS.md](./PROGRESS.md) for detailed notes and progress tracking.
 
@@ -19,6 +20,12 @@ Problems are organized by topic/category:
 - `linked-lists/` - Pointer manipulation, fast & slow pointers, reversal techniques
 - `trees/` - Binary tree traversal (BFS/DFS), recursive and iterative solutions
 - `strings/` - String manipulation, pattern matching, substring search
+- `dynamic-programming/` - DP patterns, memoization, optimization techniques
+
+**Naming Convention:**
+- Folder names: lowercase with hyphens (e.g., `linked-lists/`, `dynamic-programming/`)
+- File names: lowercase with hyphens, short and simple for easy terminal use (e.g., `fibonacci.js`, `two-sum.js`)
+- Reason: Easier to type `node fibonacci.js` than `node fibonacci-number-problem.js`
 
 ## Key Patterns Covered
 
@@ -46,6 +53,12 @@ Problems are organized by topic/category:
 - Sliding Window technique
 - Hash Map/Set for character tracking
 - Stack pattern for matching/balancing problems
+
+### Dynamic Programming
+- Memoization (Top-down DP)
+- Iteration (Bottom-up DP)
+- Space optimization techniques
+- O(2^N) → O(N) → O(1) optimization progression
 
 ## Notes
 
