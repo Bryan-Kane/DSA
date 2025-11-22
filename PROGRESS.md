@@ -3,13 +3,13 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 30 problems
+**Total Completed**: 31 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
 - Dynamic Programming: 4/?
-- Stacks & Queues: 1/?
+- Stacks & Queues: 2/?
 
 ---
 
