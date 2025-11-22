@@ -3,12 +3,12 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 26 problems
+**Total Completed**: 27 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
-- Dynamic Programming: 1/?
+- Dynamic Programming: 2/?
 
 ---
 
@@ -215,7 +215,7 @@ This file tracks my progress through Data Structures and Algorithms problems.
 
 ---
 
-## Dynamic Programming (1/?)
+## Dynamic Programming (2/?)
 
 ### 🔄 Fibonacci Number
 - **Status**: Return To (4 Approaches - Foundation of DP)
@@ -224,6 +224,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Pattern**: Dynamic Programming - Recursion, Memoization, Iteration, Space Optimization
 - **File**: `dynamic-programming/fibonacci.js`
 - **Note**: Demonstrates all DP optimization levels: 1) Naive recursion O(2^N), 2) Memoization (top-down DP) O(N) time/space, 3) Iteration (bottom-up DP) O(N) time/space, 4) Optimized iteration O(N) time O(1) space. Key insight: only need last 2 values for Fibonacci.
+
+### ✅ Climbing Stairs
+- **Status**: Completed
+- **Difficulty**: Easy
+- **Time**: O(2^N) naive, O(N) memoization/iteration, O(N) optimized | **Space**: O(N) naive/memo/iteration, O(1) optimized
+- **Pattern**: Dynamic Programming - Same as Fibonacci with different base case
+- **File**: `dynamic-programming/climbing-stairs.js`
+- **Note**: Variant of Fibonacci pattern. Base case: n<3 returns n (gives sequence 1,2,3,5,8...). All 4 approaches: 1) Naive recursion, 2) Memoization with Map, 3) Iteration with array [0,1,2], 4) Optimized with first=1, second=2 sliding window.
 
 ---
 
