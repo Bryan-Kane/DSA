@@ -189,13 +189,13 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **File**: `strings/valid-anagram.js`
 - **Note**: Includes both sorting and hash map approaches
 
-### 🔄 Longest Substring Without Repeating Characters
-- **Status**: Return To (While Loop Pattern)
+### ✅ Longest Substring Without Repeating Characters
+- **Status**: Completed (Reviewed and Re-solved)
 - **Difficulty**: Medium
 - **Time**: O(N) | **Space**: O(N)
 - **Pattern**: Sliding Window + Set
-- **File**: `strings/longest-substring-without-repeating-characters.js`
-- **Note**: CRITICAL: Use WHILE loop (not if) to shrink window until duplicate removed. Common mistake: if only removes one char, while keeps removing until duplicate gone. Window size = i - left + 1
+- **File**: `strings/longest-substring.js`
+- **Note**: CRITICAL: Use WHILE loop (not if) to shrink window until duplicate removed. Common mistake: if only removes one char, while keeps removing until duplicate gone. Window size = right - left + 1. Successfully re-implemented with correct while loop pattern.
 
 ### ✅ Valid Parentheses
 - **Status**: Completed

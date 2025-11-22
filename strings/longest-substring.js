@@ -19,17 +19,17 @@
 
 function lengthOfLongestSubstring(str) {
   let set = new Set();
-  let length = 0;
   let left = 0;
-  for(let i = 0;i<str.length;i++){
-    while(set.has(str[i])){
+  let longest = 0;
+  for(let right = 0;right<str.length;right++){
+    while(set.has(str[right])){
       set.delete(str[left]);
       left++;
     }
-    set.add(str[i]);
-    length = Math.max(length,i - left + 1);
+    set.add(str[right]);
+    longest = Math.max(longest, right - left + 1);
   }
-  return length;
+  return longest;
   // Your code here
 }
 
