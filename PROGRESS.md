@@ -252,7 +252,7 @@ This file tracks my progress through Data Structures and Algorithms problems.
 
 ---
 
-## Stacks & Queues (1/?)
+## Stacks & Queues (2/?)
 
 ### 🔄 Implement Queue using Stacks
 - **Status**: Return To (Need to review lazy transfer optimization)
@@ -261,6 +261,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Pattern**: Two Stacks / Lazy Transfer
 - **File**: `stacks-queues/queue-using-stacks.js`
 - **Note**: Use two stacks: input (for enqueue) and output (for dequeue). Key optimization: only transfer elements from input→output when output is empty (lazy transfer). This ensures each element moves at most once, giving amortized O(1) time. isEmpty() checks both stacks. Common mistake: transferring back and forth on every operation (O(N) instead of O(1)).
+
+### ✅ Min Stack
+- **Status**: Completed
+- **Difficulty**: Easy
+- **Time**: O(1) all operations | **Space**: O(N)
+- **Pattern**: Parallel Min Stack / Auxiliary Data Structure
+- **File**: `stacks-queues/min-stack.js`
+- **Note**: Maintain two parallel stacks: main stack stores values, minStack stores the minimum at each level. When pushing, minStack gets min(current_min, new_value). When popping, pop from both to stay synchronized. getMin() just returns top of minStack. Alternative approach: store (value, min) pairs in single stack. Key insight: need to track what the previous minimum was when current min gets popped.
 
 ---
 
