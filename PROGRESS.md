@@ -332,4 +332,8 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - Implementing queue with two stacks: use lazy transfer pattern (only move elements when needed)
 - Two-stack queue optimization: keep elements in output stack, only transfer when it's empty
 - Amortized analysis: each element moves at most once from input→output stack, so O(1) amortized time per operation
+- Min stack pattern: maintain auxiliary data structure (parallel stack) to track metadata alongside main data
+- Parallel stacks stay synchronized: push/pop on both together
+- Alternative to parallel stack: store tuples (value, metadata) in single stack
+- Key insight for min tracking: need to remember what the previous minimum was when current min gets popped
 
