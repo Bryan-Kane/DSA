@@ -3,12 +3,13 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 28 problems
+**Total Completed**: 30 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
-- Dynamic Programming: 3/?
+- Dynamic Programming: 4/?
+- Stacks & Queues: 1/?
 
 ---
 
@@ -215,7 +216,7 @@ This file tracks my progress through Data Structures and Algorithms problems.
 
 ---
 
-## Dynamic Programming (3/?)
+## Dynamic Programming (4/?)
 
 ### 🔄 Fibonacci Number
 - **Status**: Return To (4 Approaches - Foundation of DP)
@@ -240,6 +241,26 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Pattern**: Dynamic Programming - Min/Max optimization pattern
 - **File**: `dynamic-programming/min-cost-climbing-stairs.js`
 - **Note**: Different from Fibonacci - uses Math.min() to find optimal path cost instead of counting paths. Base: dp[0]=dp[1]=0 (can start at either for free). Recurrence: dp[i] = min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2]). Target is cost.length (one past end). Need to complete O(1) space optimization.
+
+### 🔄 Partition Equal Subset Sum
+- **Status**: Return To (Need to review DP subset sum pattern)
+- **Difficulty**: Medium
+- **Time**: O(N × Target) where Target = sum/2 | **Space**: O(Target)
+- **Pattern**: Dynamic Programming - 0/1 Knapsack / Subset Sum
+- **File**: `dynamic-programming/partition-equal-sum.js`
+- **Note**: Classic subset sum problem. Key insight: "Can we partition into 2 equal sums?" becomes "Can we pick elements that sum to total/2?". DP array tracks which sums are possible. For each number, ask "Is there an existing sum that if I add myself to it equals target?". Go backwards to avoid reusing same element. Pattern: dp[sum] = true if dp[sum - num] is true. Backtracking step reconstructs actual subsets.
+
+---
+
+## Stacks & Queues (1/?)
+
+### 🔄 Implement Queue using Stacks
+- **Status**: Return To (Need to review lazy transfer optimization)
+- **Difficulty**: Easy
+- **Time**: O(1) enqueue, O(1) amortized dequeue/peek | **Space**: O(N)
+- **Pattern**: Two Stacks / Lazy Transfer
+- **File**: `stacks-queues/queue-using-stacks.js`
+- **Note**: Use two stacks: input (for enqueue) and output (for dequeue). Key optimization: only transfer elements from input→output when output is empty (lazy transfer). This ensures each element moves at most once, giving amortized O(1) time. isEmpty() checks both stacks. Common mistake: transferring back and forth on every operation (O(N) instead of O(1)).
 
 ---
 
@@ -296,4 +317,11 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - Bottom-up DP (iteration): start with base cases, build up to answer
 - Space optimization: often only need last few values, not entire array (e.g., Fibonacci only needs last 2)
 - Fibonacci demonstrates O(2^N) → O(N) → O(1) space optimization progression
+
+### Stacks & Queues
+- Stack: LIFO (Last In, First Out) - like a stack of plates, push/pop from same end
+- Queue: FIFO (First In, First Out) - like a line at a store, enqueue at back/dequeue from front
+- Implementing queue with two stacks: use lazy transfer pattern (only move elements when needed)
+- Two-stack queue optimization: keep elements in output stack, only transfer when it's empty
+- Amortized analysis: each element moves at most once from input→output stack, so O(1) amortized time per operation
 
