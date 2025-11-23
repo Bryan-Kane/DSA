@@ -15,13 +15,13 @@ This file tracks my progress through Data Structures and Algorithms problems.
 ## Repository Structure
 
 Problems are organized by topic/category:
-- `arrays/` - Array manipulation, two pointers, hash maps, binary search
-- `linked-lists/` - Pointer manipulation, fast & slow pointers, reversal techniques
-- `trees/` - Binary tree traversal (BFS/DFS), recursive and iterative solutions
-- `strings/` - String manipulation, pattern matching, substring search
-- `dynamic-programming/` - DP patterns, memoization, optimization techniques
-- `stacks-queues/` - Stack/Queue operations, monotonic stack, two-stack patterns
-- `graphs/` - Graph traversal (DFS/BFS), connected components, graph properties
+- `Arrays/` - Array manipulation, two pointers, hash maps, binary search
+- `LinkedLists/` - Pointer manipulation, fast & slow pointers, reversal techniques
+- `Trees/` - Binary tree traversal (BFS/DFS), recursive and iterative solutions
+- `Strings/` - String manipulation, pattern matching, substring search
+- `DynamicProgramming/` - DP patterns, memoization, optimization techniques
+- `StacksQueues/` - Stack/Queue operations, monotonic stack, two-stack patterns
+- `Graphs/` - Graph traversal (DFS/BFS), connected components, graph properties
 
 ## Quick Reference: Key Patterns
 
@@ -153,35 +153,35 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(N) | **Space**: O(1)
 - **Pattern**: Three Pointers (Iterative)
-- **File**: `linked-lists/reverse-linked-list.js`
+- **File**: `LinkedLists/reverse-linked-list.js`
 
 ### ✅ Linked List Cycle
 - **Status**: Completed
 - **Difficulty**: Easy
 - **Time**: O(N) | **Space**: O(1)
 - **Pattern**: Floyd's Cycle Detection (Fast & Slow Pointers)
-- **File**: `linked-lists/linked-list-cycle.js`
+- **File**: `LinkedLists/linked-list-cycle.js`
 
 ### ✅ Merge Two Sorted Lists
 - **Status**: Completed
 - **Difficulty**: Easy
 - **Time**: O(N + M) | **Space**: O(1)
 - **Pattern**: Two Pointers / Dummy Node
-- **File**: `linked-lists/merge-two-sorted-lists.js`
+- **File**: `LinkedLists/merge-two-sorted-lists.js`
 
 ### ✅ Remove Nth Node From End of List
 - **Status**: Completed
 - **Difficulty**: Medium
 - **Time**: O(N) | **Space**: O(1)
 - **Pattern**: Two Pointers (Fast & Slow) / One Pass
-- **File**: `linked-lists/remove-nth-node-from-end.js`
+- **File**: `LinkedLists/remove-nth-node-from-end.js`
 
 ### ✅ Reorder List
 - **Status**: Completed
 - **Difficulty**: Medium
 - **Time**: O(N) | **Space**: O(1)
 - **Pattern**: Find Middle + Reverse + Merge (Fast & Slow Pointers)
-- **File**: `linked-lists/reorder-list.js`
+- **File**: `LinkedLists/reorder-list.js`
 
 ---
 
@@ -192,7 +192,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(N) | **Space**: O(W) iterative, O(H) recursive
 - **Pattern**: BFS Level-order / DFS Recursive
-- **File**: `trees/invert-binary-tree.js`
+- **File**: `Trees/invert-binary-tree.js`
 - **Note**: Includes both iterative and recursive solutions
 
 ### ✅ Maximum Depth of Binary Tree
@@ -200,7 +200,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(N) | **Space**: O(W) iterative, O(H) recursive
 - **Pattern**: BFS Level-order / DFS Recursive
-- **File**: `trees/maximum-depth-of-binary-tree.js`
+- **File**: `Trees/maximum-depth-of-binary-tree.js`
 - **Note**: Includes both iterative and recursive solutions
 
 ### ✅ Same Tree
@@ -208,7 +208,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(N) | **Space**: O(W) BFS, O(H) DFS
 - **Pattern**: BFS with Queue / DFS Recursive
-- **File**: `trees/same-tree.js`
+- **File**: `Trees/same-tree.js`
 - **Note**: Includes both BFS (queue-based) and DFS (recursive) approaches
 
 ### ✅ Symmetric Tree
@@ -216,7 +216,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(N) | **Space**: O(W) BFS, O(H) DFS
 - **Pattern**: BFS with Queue / DFS Recursive (Mirror Comparison)
-- **File**: `trees/symmetric-tree.js`
+- **File**: `Trees/symmetric-tree.js`
 - **Note**: Similar to Same Tree but compares mirror positions (left.left vs right.right, left.right vs right.left)
 
 ### ✅ Binary Tree Level Order Traversal
@@ -224,7 +224,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Medium
 - **Time**: O(N) | **Space**: O(W) BFS, O(H) DFS
 - **Pattern**: BFS with Level Tracking / DFS with Closure
-- **File**: `trees/binary-tree-level-order-traversal.js`
+- **File**: `Trees/binary-tree-level-order-traversal.js`
 - **Note**: Key patterns: BFS uses levelSize to process one level at a time, DFS uses closure over result array with level parameter
 
 ### ✅ Minimum Depth of Binary Tree
@@ -232,7 +232,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(N) | **Space**: O(W) BFS, O(H) DFS
 - **Pattern**: BFS Level-order / DFS Recursive with Edge Cases
-- **File**: `trees/minimum-depth-of-binary-tree.js`
+- **File**: `Trees/minimum-depth-of-binary-tree.js`
 - **Note**: BFS returns early when finding first leaf. DFS is tricky: must handle nodes with only one child (can't just use Math.min)
 
 ---
@@ -244,7 +244,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(N * M) | **Space**: O(1)
 - **Pattern**: Brute Force / Built-in Methods
-- **File**: `strings/is-substring.js`
+- **File**: `Strings/is-substring.js`
 - **Note**: Includes three approaches: includes(), manual implementation, and indexOf()
 
 ### ✅ Valid Anagram
@@ -252,7 +252,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(N) | **Space**: O(N)
 - **Pattern**: Hash Map / Sorting
-- **File**: `strings/valid-anagram.js`
+- **File**: `Strings/valid-anagram.js`
 - **Note**: Includes both sorting and hash map approaches
 
 ### ✅ Longest Substring Without Repeating Characters
@@ -260,7 +260,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Medium
 - **Time**: O(N) | **Space**: O(N)
 - **Pattern**: Sliding Window + Set
-- **File**: `strings/longest-substring.js`
+- **File**: `Strings/longest-substring.js`
 - **Note**: CRITICAL: Use WHILE loop (not if) to shrink window until duplicate removed. Common mistake: if only removes one char, while keeps removing until duplicate gone. Window size = right - left + 1. Successfully re-implemented with correct while loop pattern.
 
 ### ✅ Valid Parentheses
@@ -268,7 +268,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(N) | **Space**: O(N)
 - **Pattern**: Stack / Hash Map
-- **File**: `strings/valid-parentheses.js`
+- **File**: `Strings/valid-parentheses.js`
 - **Note**: Includes both helper array approach and optimized hash map approach
 
 ### ✅ Group Anagrams
@@ -276,7 +276,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Medium
 - **Time**: O(N * K log K) | **Space**: O(N * K)
 - **Pattern**: Hash Map + Sorting
-- **File**: `strings/group-anagrams.js`
+- **File**: `Strings/group-anagrams.js`
 - **Note**: Sort each string as key. Map stores indices to result array. Time complexity: N strings × K log K sorting. Space: N×K matrix-like structure
 
 ---
@@ -288,7 +288,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(2^N) naive, O(N) memoization/iteration, O(N) optimized | **Space**: O(N) naive/memo/iteration, O(1) optimized
 - **Pattern**: Dynamic Programming - Recursion, Memoization, Iteration, Space Optimization
-- **File**: `dynamic-programming/fibonacci.js`
+- **File**: `DynamicProgramming/fibonacci.js`
 - **Note**: Demonstrates all DP optimization levels: 1) Naive recursion O(2^N), 2) Memoization (top-down DP) O(N) time/space, 3) Iteration (bottom-up DP) O(N) time/space, 4) Optimized iteration O(N) time O(1) space. Key insight: only need last 2 values for Fibonacci.
 
 ### ✅ Climbing Stairs
@@ -296,7 +296,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(2^N) naive, O(N) memoization/iteration, O(N) optimized | **Space**: O(N) naive/memo/iteration, O(1) optimized
 - **Pattern**: Dynamic Programming - Same as Fibonacci with different base case
-- **File**: `dynamic-programming/climbing-stairs.js`
+- **File**: `DynamicProgramming/climbing-stairs.js`
 - **Note**: Variant of Fibonacci pattern. Base case: n<3 returns n (gives sequence 1,2,3,5,8...). All 4 approaches: 1) Naive recursion, 2) Memoization with Map, 3) Iteration with array [0,1,2], 4) Optimized with first=1, second=2 sliding window.
 
 ### 🔄 Min Cost Climbing Stairs
@@ -304,7 +304,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(2^N) naive, O(N) memoization/iteration, O(N) optimized | **Space**: O(N) naive/memo/iteration, O(1) optimized
 - **Pattern**: Dynamic Programming - Min/Max optimization pattern
-- **File**: `dynamic-programming/min-cost-climbing-stairs.js`
+- **File**: `DynamicProgramming/min-cost-climbing-stairs.js`
 - **Note**: Different from Fibonacci - uses Math.min() to find optimal path cost instead of counting paths. Base: dp[0]=dp[1]=0 (can start at either for free). Recurrence: dp[i] = min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2]). Target is cost.length (one past end). Need to complete O(1) space optimization.
 
 ### 🔄 Partition Equal Subset Sum
@@ -312,7 +312,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Medium
 - **Time**: O(N × Target) where Target = sum/2 | **Space**: O(Target)
 - **Pattern**: Dynamic Programming - 0/1 Knapsack / Subset Sum
-- **File**: `dynamic-programming/partition-equal-sum.js`
+- **File**: `DynamicProgramming/partition-equal-sum.js`
 - **Note**: Classic subset sum problem. Key insight: "Can we partition into 2 equal sums?" becomes "Can we pick elements that sum to total/2?". DP array tracks which sums are possible. For each number, ask "Is there an existing sum that if I add myself to it equals target?". Go backwards to avoid reusing same element. Pattern: dp[sum] = true if dp[sum - num] is true. Backtracking step reconstructs actual subsets.
 
 ---
@@ -324,7 +324,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(1) enqueue, O(1) amortized dequeue/peek | **Space**: O(N)
 - **Pattern**: Two Stacks / Lazy Transfer
-- **File**: `stacks-queues/queue-using-stacks.js`
+- **File**: `StacksQueues/queue-using-stacks.js`
 - **Note**: Use two stacks: input (for enqueue) and output (for dequeue). Key optimization: only transfer elements from input→output when output is empty (lazy transfer). This ensures each element moves at most once, giving amortized O(1) time. isEmpty() checks both stacks. Common mistake: transferring back and forth on every operation (O(N) instead of O(1)).
 
 ### ✅ Min Stack
@@ -332,7 +332,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(1) all operations | **Space**: O(N)
 - **Pattern**: Parallel Min Stack / Auxiliary Data Structure
-- **File**: `stacks-queues/min-stack.js`
+- **File**: `StacksQueues/min-stack.js`
 - **Note**: Maintain two parallel stacks: main stack stores values, minStack stores the minimum at each level. When pushing, minStack gets min(current_min, new_value). When popping, pop from both to stay synchronized. getMin() just returns top of minStack. Alternative approach: store (value, min) pairs in single stack. Key insight: need to track what the previous minimum was when current min gets popped.
 
 ### ✅ Evaluate Reverse Polish Notation
@@ -340,7 +340,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Medium
 - **Time**: O(N) | **Space**: O(N)
 - **Pattern**: Stack / Expression Evaluation
-- **File**: `stacks-queues/evaluate-rpn.js`
+- **File**: `StacksQueues/evaluate-rpn.js`
 - **Note**: Classic stack-based calculator. Push numbers onto stack, when operator appears pop two operands (order matters: second=a, first=b, compute a op b). Division uses Math.trunc() to truncate toward zero per problem requirements. Stack pattern: process elements left to right, operators consume top stack elements and push result back.
 
 ### 🔄 Daily Temperatures
@@ -348,7 +348,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Medium
 - **Time**: O(N) | **Space**: O(N)
 - **Pattern**: Monotonic Decreasing Stack
-- **File**: `stacks-queues/daily-temperatures.js`
+- **File**: `StacksQueues/daily-temperatures.js`
 - **Note**: Find next warmer temperature for each day. Monotonic stack maintains indices in decreasing temperature order. Iterate backwards: pop indices with temp <= current (they're blocked), top of stack is answer, push current index. Each element pushed/popped once = O(N). Alternative: O(N²) brute force with nested loops is simpler but slower. Key insight: stack only keeps "useful" candidates that could be next warmer day.
 
 ---
@@ -360,7 +360,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Medium
 - **Time**: O(M × N) where M = rows, N = cols | **Space**: O(M × N) for recursion stack
 - **Pattern**: DFS / Flood Fill / Connected Components
-- **File**: `graphs/number-of-islands.js`
+- **File**: `Graphs/number-of-islands.js`
 - **Note**: Classic DFS flood fill problem. Iterate through grid, when you find a '1' increment count and flood fill all connected '1's by marking them '0' (visited). DFS explores all 4 directions (up, down, left, right). Base case checks bounds and if cell is '0'. Key insight: each island is a connected component - DFS marks entire island as visited so it only gets counted once. Common bugs: forgetting to mark visited (infinite recursion), using === instead of = for assignment, checking only 2 directions instead of 4.
 
 ### ✅ Find Center of Star Graph
@@ -368,7 +368,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(1) | **Space**: O(1)
 - **Pattern**: Graph Properties / Edge Comparison
-- **File**: `graphs/find-center.js`
+- **File**: `Graphs/find-center.js`
 - **Note**: Star graph has one center node connected to all other nodes. Center appears in every edge, so only need to check first 2 edges. If edges[0][0] appears in edges[1], it's the center; otherwise edges[0][1] is the center. No DFS/BFS needed - pure logic problem using graph properties.
 
 ### 🔄 Find if Path Exists in Graph
@@ -376,7 +376,7 @@ Problems are organized by topic/category:
 - **Difficulty**: Easy
 - **Time**: O(n + edges.length) | **Space**: O(n + edges.length)
 - **Pattern**: BFS / Graph Traversal / Adjacency List
-- **File**: `graphs/valid-path.js`
+- **File**: `Graphs/valid-path.js`
 - **Note**: Build adjacency list from edges (undirected: add both u→v and v→u). Use BFS with queue and visited Set. Start from source, explore neighbors level by level until destination is found or queue is empty. Key steps: 1) Handle edge case (source === destination), 2) Initialize graph Map with empty arrays for all n nodes (0 to n-1), 3) Populate adjacency list from edges, 4) BFS with queue=[source] and visited={source}, 5) For each node, check all neighbors - if neighbor is destination return true, if unvisited add to queue and mark visited. Return false if destination never found.
 
 ---
