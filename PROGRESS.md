@@ -3,13 +3,14 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 32 problems
+**Total Completed**: 33 problems
 - Arrays: 9/9
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
 - Dynamic Programming: 4/?
 - Stacks & Queues: 3/?
+- Graphs: 1/?
 
 ---
 
@@ -278,6 +279,26 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **File**: `stacks-queues/evaluate-rpn.js`
 - **Note**: Classic stack-based calculator. Push numbers onto stack, when operator appears pop two operands (order matters: second=a, first=b, compute a op b). Division uses Math.trunc() to truncate toward zero per problem requirements. Stack pattern: process elements left to right, operators consume top stack elements and push result back.
 
+### 🔄 Daily Temperatures
+- **Status**: Return To (Need to review monotonic stack pattern)
+- **Difficulty**: Medium
+- **Time**: O(N) | **Space**: O(N)
+- **Pattern**: Monotonic Decreasing Stack
+- **File**: `stacks-queues/daily-temperatures.js`
+- **Note**: Find next warmer temperature for each day. Monotonic stack maintains indices in decreasing temperature order. Iterate backwards: pop indices with temp <= current (they're blocked), top of stack is answer, push current index. Each element pushed/popped once = O(N). Alternative: O(N²) brute force with nested loops is simpler but slower. Key insight: stack only keeps "useful" candidates that could be next warmer day.
+
+---
+
+## Graphs (1/?)
+
+### ✅ Number of Islands
+- **Status**: Completed
+- **Difficulty**: Medium
+- **Time**: O(M × N) where M = rows, N = cols | **Space**: O(M × N) for recursion stack
+- **Pattern**: DFS / Flood Fill / Connected Components
+- **File**: `graphs/number-of-islands.js`
+- **Note**: Classic DFS flood fill problem. Iterate through grid, when you find a '1' increment count and flood fill all connected '1's by marking them '0' (visited). DFS explores all 4 directions (up, down, left, right). Base case checks bounds and if cell is '0'. Key insight: each island is a connected component - DFS marks entire island as visited so it only gets counted once. Common bugs: forgetting to mark visited (infinite recursion), using === instead of = for assignment, checking only 2 directions instead of 4.
+
 ---
 
 ## Key Patterns & Learnings
@@ -347,4 +368,22 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - RPN evaluation: push operands, pop two when operator found, compute and push result back
 - Operator order matters in stack operations: second popped is left operand, first popped is right operand
 - Math.trunc() truncates toward zero (handles both positive and negative division correctly)
+- Monotonic stack: maintain elements in increasing or decreasing order, pop elements that violate the order
+- Monotonic decreasing stack: temperatures decrease from bottom to top, used for "next greater element" problems
+- Stack stores indices (not values) when you need to calculate distances or positions
+- Each element pushed/popped at most once in monotonic stack = O(N) total time despite nested while loop
+
+### Graphs
+- Graph: nodes (vertices) connected by edges, can be directed/undirected, weighted/unweighted
+- 2D grid is an implicit graph: each cell is a node, adjacent cells (up/down/left/right) are neighbors
+- DFS (Depth-First Search): explore as deep as possible before backtracking, uses recursion or explicit stack
+- DFS flood fill pattern: start at a cell, mark it visited, recursively explore all neighbors
+- Base case for grid DFS: check bounds (row/col in range) AND check if already visited/invalid
+- Mark cells as visited BEFORE recursing to prevent infinite loops
+- Connected components: groups of nodes where each node can reach every other node in the group
+- Island counting: each island is a connected component of '1' cells
+- In-place visited tracking: modify grid directly (change '1' to '0') to save space vs using separate Set
+- 4-directional movement: up (row-1), down (row+1), left (col-1), right (col+1)
+- Common bug: using comparison (===) instead of assignment (=) when marking visited
+- DFS recursion stack space: O(M × N) worst case if entire grid is one connected component
 
