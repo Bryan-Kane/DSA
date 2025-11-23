@@ -4,8 +4,8 @@ A personal repository to track my progress through various Data Structures and A
 
 ## Progress Summary
 
-**Total Completed**: 28 problems
-- Arrays: 9/9 ✅
+**Total Completed**: 34 problems
+- Arrays: 10/? 🔄
 - Linked Lists: 5/5 ✅
 - Trees: 6/? 🔄
 - Strings: 5/? 🔄
@@ -60,12 +60,23 @@ Problems are organized by topic/category:
 - Space optimization techniques
 - O(2^N) → O(N) → O(1) optimization progression
 
+## Problem Format
+
+Each problem file should include:
+- **Problem name** (matching LeetCode title)
+- **LeetCode difficulty** (Easy/Medium/Hard)
+- **Concise problem description** (2-3 lines max)
+- **3 examples** with input/output only (no explanations)
+- **Minimal constraints**
+- **Target Complexity** with `O(?)`
+- **NO test cases provided** - I write my own tests to simulate interview conditions
+
 ## Notes
 
 - Each solution is implemented in JavaScript
 - Problems that can be solved both iteratively and recursively include both implementations
 - Complexity analysis included in comments for each solution
-- Test cases included at the bottom of each file
+- **Problem descriptions should be concise** - It's better to ask clarifying questions than have everything spelled out
 - Solutions are organized by problem type/category
 - This repo serves as a reference and learning log
 

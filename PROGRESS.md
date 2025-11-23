@@ -3,8 +3,8 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 33 problems
-- Arrays: 9/9
+**Total Completed**: 34 problems
+- Arrays: 10/?
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
@@ -14,7 +14,7 @@ This file tracks my progress through Data Structures and Algorithms problems.
 
 ---
 
-## Arrays (9/9)
+## Arrays (10/?)
 
 ### ✅ Two Sum
 - **Status**: Completed
@@ -79,6 +79,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **Pattern**: Binary Search
 - **File**: `Arrays/binary-search.js`
 - **Note**: Includes both iterative and recursive solutions
+
+### ✅ Alert Using Same Key-Card Three or More Times in a One Hour Period
+- **Status**: Completed
+- **Difficulty**: Medium
+- **Time**: O(N log N) | **Space**: O(N)
+- **Pattern**: Hash Map + Sorting + Sliding Window
+- **File**: `Arrays/alert-keycard.js`
+- **Note**: Group times by person, sort each person's times, use sliding window to check if any 3 consecutive accesses are within 60 minutes. Convert times to minutes for easier comparison.
 
 ---
 
