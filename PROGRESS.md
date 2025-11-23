@@ -3,14 +3,14 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 34 problems
+**Total Completed**: 35 problems
 - Arrays: 10/?
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
 - Dynamic Programming: 4/?
 - Stacks & Queues: 3/?
-- Graphs: 1/?
+- Graphs: 2/?
 
 ---
 
@@ -307,6 +307,14 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - **File**: `graphs/number-of-islands.js`
 - **Note**: Classic DFS flood fill problem. Iterate through grid, when you find a '1' increment count and flood fill all connected '1's by marking them '0' (visited). DFS explores all 4 directions (up, down, left, right). Base case checks bounds and if cell is '0'. Key insight: each island is a connected component - DFS marks entire island as visited so it only gets counted once. Common bugs: forgetting to mark visited (infinite recursion), using === instead of = for assignment, checking only 2 directions instead of 4.
 
+### ✅ Find Center of Star Graph
+- **Status**: Completed
+- **Difficulty**: Easy
+- **Time**: O(1) | **Space**: O(1)
+- **Pattern**: Graph Properties / Edge Comparison
+- **File**: `graphs/find-center.js`
+- **Note**: Star graph has one center node connected to all other nodes. Center appears in every edge, so only need to check first 2 edges. If edges[0][0] appears in edges[1], it's the center; otherwise edges[0][1] is the center. No DFS/BFS needed - pure logic problem using graph properties.
+
 ---
 
 ## Key Patterns & Learnings
@@ -394,4 +402,8 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - 4-directional movement: up (row-1), down (row+1), left (col-1), right (col+1)
 - Common bug: using comparison (===) instead of assignment (=) when marking visited
 - DFS recursion stack space: O(M × N) worst case if entire grid is one connected component
+- Star graph: special structure with one center node connected to all other nodes, no connections between outer nodes
+- Star graph property: center node appears in every single edge
+- Not all graph problems require traversal - some can be solved with O(1) logic using graph properties
+- For star graph center: compare first 2 edges - whichever node appears in both is the center
 
