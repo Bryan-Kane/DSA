@@ -3,14 +3,14 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 35 problems
+**Total Completed**: 36 problems
 - Arrays: 10/?
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
 - Dynamic Programming: 4/?
 - Stacks & Queues: 3/?
-- Graphs: 2/?
+- Graphs: 3/?
 
 ## Repository Structure
 
@@ -353,7 +353,7 @@ Problems are organized by topic/category:
 
 ---
 
-## Graphs (1/?)
+## Graphs (2/?)
 
 ### ✅ Number of Islands
 - **Status**: Completed
@@ -370,6 +370,14 @@ Problems are organized by topic/category:
 - **Pattern**: Graph Properties / Edge Comparison
 - **File**: `graphs/find-center.js`
 - **Note**: Star graph has one center node connected to all other nodes. Center appears in every edge, so only need to check first 2 edges. If edges[0][0] appears in edges[1], it's the center; otherwise edges[0][1] is the center. No DFS/BFS needed - pure logic problem using graph properties.
+
+### 🔄 Find if Path Exists in Graph
+- **Status**: Return To (Need to practice BFS pattern independently)
+- **Difficulty**: Easy
+- **Time**: O(n + edges.length) | **Space**: O(n + edges.length)
+- **Pattern**: BFS / Graph Traversal / Adjacency List
+- **File**: `graphs/valid-path.js`
+- **Note**: Build adjacency list from edges (undirected: add both u→v and v→u). Use BFS with queue and visited Set. Start from source, explore neighbors level by level until destination is found or queue is empty. Key steps: 1) Handle edge case (source === destination), 2) Initialize graph Map with empty arrays for all n nodes (0 to n-1), 3) Populate adjacency list from edges, 4) BFS with queue=[source] and visited={source}, 5) For each node, check all neighbors - if neighbor is destination return true, if unvisited add to queue and mark visited. Return false if destination never found.
 
 ---
 
@@ -462,4 +470,11 @@ Problems are organized by topic/category:
 - Star graph property: center node appears in every single edge
 - Not all graph problems require traversal - some can be solved with O(1) logic using graph properties
 - For star graph center: compare first 2 edges - whichever node appears in both is the center
+- BFS (Breadth-First Search): explore neighbors level by level using a queue, guarantees shortest path in unweighted graphs
+- Adjacency list: Map where each node maps to array of its neighbors, built from edges
+- For undirected graphs: edge [u,v] creates two connections (u→v and v→u)
+- BFS requires visited Set to prevent infinite loops and revisiting nodes
+- Initialize graph Map with all n nodes (0 to n-1) first, then populate edges - prevents undefined when accessing isolated nodes
+- Queue pattern: dequeue current node, check all neighbors, enqueue unvisited neighbors
+- BFS early exit: return true immediately when destination is found among neighbors (don't need to explore entire graph)
 
