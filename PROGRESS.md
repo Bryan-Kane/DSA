@@ -12,6 +12,62 @@ This file tracks my progress through Data Structures and Algorithms problems.
 - Stacks & Queues: 3/?
 - Graphs: 2/?
 
+## Repository Structure
+
+Problems are organized by topic/category:
+- `arrays/` - Array manipulation, two pointers, hash maps, binary search
+- `linked-lists/` - Pointer manipulation, fast & slow pointers, reversal techniques
+- `trees/` - Binary tree traversal (BFS/DFS), recursive and iterative solutions
+- `strings/` - String manipulation, pattern matching, substring search
+- `dynamic-programming/` - DP patterns, memoization, optimization techniques
+- `stacks-queues/` - Stack/Queue operations, monotonic stack, two-stack patterns
+- `graphs/` - Graph traversal (DFS/BFS), connected components, graph properties
+
+## Quick Reference: Key Patterns
+
+### Arrays
+- Hash Map/Set for O(1) lookups
+- Two Pointers (same/opposite direction)
+- Prefix/Suffix products
+- Binary Search
+- Kadane's Algorithm (DP)
+
+### Linked Lists
+- In-place reversal (3 pointers)
+- Floyd's Cycle Detection
+- Fast & Slow pointers
+- Dummy node technique
+
+### Trees
+- BFS (Level-order traversal)
+- DFS (Recursive traversal)
+- Understanding O(W) vs O(H) space complexity
+
+### Strings
+- Substring search (naive O(N*M) approach)
+- Built-in string methods
+- Sliding Window technique
+- Hash Map/Set for character tracking
+- Stack pattern for matching/balancing problems
+
+### Dynamic Programming
+- Memoization (Top-down DP)
+- Iteration (Bottom-up DP)
+- Space optimization techniques
+- O(2^N) → O(N) → O(1) optimization progression
+
+### Stacks & Queues
+- Stack (LIFO) vs Queue (FIFO)
+- Two-stack queue pattern (lazy transfer)
+- Monotonic stack (next greater/smaller element)
+- Parallel stacks for metadata tracking
+
+### Graphs
+- DFS (Depth-First Search) flood fill
+- Connected components
+- Graph properties and O(1) solutions
+- Grid as implicit graph
+
 ---
 
 ## Arrays (10/?)
