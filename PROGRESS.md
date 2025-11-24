@@ -3,8 +3,8 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 36 problems
-- Arrays: 10/?
+**Total Completed**: 37 problems
+- Arrays: 11/?
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
@@ -143,6 +143,14 @@ Problems are organized by topic/category:
 - **Pattern**: Hash Map + Sorting + Sliding Window
 - **File**: `Arrays/alert-keycard.js`
 - **Note**: Group times by person, sort each person's times, use sliding window to check if any 3 consecutive accesses are within 60 minutes. Convert times to minutes for easier comparison.
+
+### ✅ Stock Trading Profit/Loss Tracker
+- **Status**: Completed
+- **Difficulty**: Medium
+- **Time**: O(N) | **Space**: O(S) where S = unique stocks
+- **Pattern**: State Management + Hash Map + Cumulative Delta Tracking
+- **File**: `Arrays/stock-trading-tracker.js`
+- **Note**: PayPal Karat interview question (2024). Simulates trading system with BUY, SELL, CHANGE, QUERY events. Key insight: track cumulative profit/loss using (quantity × price_change) for each CHANGE event. When SELL reduces quantity, future CHANGEs automatically affect fewer shares. No need to track purchase prices or current market prices separately.
 
 ---
 
@@ -392,6 +400,9 @@ Problems are organized by topic/category:
 - Sorting can enable efficient two-pointer solutions for finding pairs/triplets
 - Binary search requires sorted array and works by repeatedly dividing search space in half
 - Recursive binary search uses O(log N) space due to call stack, iterative uses O(1)
+- State management with hash maps: track quantities, prices, or counts for simulation problems
+- Cumulative delta tracking: instead of tracking absolute values, track running sum of changes (profit/loss calculation)
+- Avoid shift() on arrays: O(N) per operation. Use for...of loop for O(1) iteration per element
 
 ### Linked Lists
 - In-place pointer manipulation can achieve O(1) space complexity
