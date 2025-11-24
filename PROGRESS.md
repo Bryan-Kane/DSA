@@ -3,8 +3,8 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 37 problems
-- Arrays: 11/?
+**Total Completed**: 38 problems
+- Arrays: 12/?
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
@@ -151,6 +151,14 @@ Problems are organized by topic/category:
 - **Pattern**: State Management + Hash Map + Cumulative Delta Tracking
 - **File**: `Arrays/stock-trading-tracker.js`
 - **Note**: PayPal Karat interview question (2024). Simulates trading system with BUY, SELL, CHANGE, QUERY events. Key insight: track cumulative profit/loss using (quantity × price_change) for each CHANGE event. When SELL reduces quantity, future CHANGEs automatically affect fewer shares. No need to track purchase prices or current market prices separately.
+
+### ✅ Payment Transaction Timing Verification
+- **Status**: Completed
+- **Difficulty**: Easy
+- **Time**: O(N) | **Space**: O(1)
+- **Pattern**: Consecutive Element Comparison + Early Exit
+- **File**: `Arrays/payment-transaction-timing.js`
+- **Note**: Simple validation problem. Check if all consecutive timestamp pairs are within the time limit. Since array is sorted, iterate once comparing each element with previous. Early exit on first violation for optimization.
 
 ---
 
@@ -403,6 +411,8 @@ Problems are organized by topic/category:
 - State management with hash maps: track quantities, prices, or counts for simulation problems
 - Cumulative delta tracking: instead of tracking absolute values, track running sum of changes (profit/loss calculation)
 - Avoid shift() on arrays: O(N) per operation. Use for...of loop for O(1) iteration per element
+- Consecutive element comparison: when array is sorted, compare adjacent elements for validation
+- Early exit optimization: return false immediately on first violation instead of checking all elements
 
 ### Linked Lists
 - In-place pointer manipulation can achieve O(1) space complexity

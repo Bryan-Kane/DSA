@@ -4,8 +4,8 @@ Personal repository for DSA practice with focus on understanding over memorizati
 
 ## Progress
 
-**Total Completed**: 37 problems
-- Arrays: 11/?
+**Total Completed**: 38 problems
+- Arrays: 12/?
 - Linked Lists: 5/5 ✅
 - Trees: 6/?
 - Strings: 5/?
