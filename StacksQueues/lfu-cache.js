@@ -68,29 +68,41 @@
  */
 
 // Node for Doubly Linked List
-// Stores key (for map deletion), value, frequency, and pointers
+// Stores: key (for map deletion on eviction), value, frequency, prev/next pointers
+// Note: freq starts at 1 (new nodes are accessed once when created)
 class Node {
   constructor(key, value) {
     this.key = key;
     this.value = value;
-    this.prev = null;
     this.next = null;
+    this.prev = null;
     this.freq = 1;
   }
 }
 
 // Doubly Linked List (same as LRU, reusable)
-// Each frequency bucket has one of these
+// Each frequency bucket has one of these - acts as LRU within that frequency
+//
+// FLOW: HEAD <-> node1 <-> node2 <-> ... <-> TAIL
+//       (MRU)                          (LRU - evict from here)
+//
+// Methods:
+// - addToFront(node): Insert at head (most recently used)
+// - remove(node): Remove from anywhere (O(1) with direct reference)
+// - removeTail(): Remove & return LRU node for eviction
+// - isEmpty(): Check if only dummy nodes remain
 class DoublyLinkedList {
   constructor() {
-    this.head = {prev: null, next: null};
-    this.tail = {prev: null, next: null};
+    // Dummy head/tail nodes eliminate null checks
+    this.head = {prev: null, next: null};  // MRU side
+    this.tail = {prev: null, next: null};  // LRU side
     this.head.next = this.tail;
     this.tail.prev = this.head;
-
   }
 
-  // Add node to front (most recently used for this frequency)
+  // Add node to front (most recently used within this frequency)
+  // Before: HEAD <-> A <-> TAIL
+  // After:  HEAD <-> node <-> A <-> TAIL
   addToFront(node) {
     let next = this.head.next;
     next.prev = node;
@@ -99,7 +111,9 @@ class DoublyLinkedList {
     node.next = next;
   }
 
-  // Remove a specific node
+  // Remove node from anywhere in list (O(1) with direct reference)
+  // Before: A <-> node <-> B
+  // After:  A <-> B
   remove(node) {
     let prev = node.prev;
     let next = node.next;
@@ -107,11 +121,11 @@ class DoublyLinkedList {
     next.prev = prev;
   }
 
-  // Remove and return the tail node (LRU for this frequency)
+  // Remove and return LRU node (tail.prev) for eviction
   removeTail() {
-    let last = this.tail.prev;
-    this.remove(last);
-    return last;
+    let remove = this.tail.prev;
+    this.remove(remove);
+    return remove;
   }
 
   // Check if list is empty (only dummy nodes remain)
@@ -123,82 +137,128 @@ class DoublyLinkedList {
   }
 }
 
+// LFU Cache - Least Frequently Used with LRU tie-breaker
+//
+// DATA STRUCTURES:
+// - keyToNodeMap: key -> Node (O(1) lookup)
+// - freqToLinkedListMap: freq -> DoublyLinkedList (each freq has its own LRU list)
+// - minFreq: tracks lowest frequency for O(1) eviction
+//
+// FLOW:
+// freqToLinkedListMap:
+//   1 -> HEAD <-> [key3] <-> [key5] <-> TAIL
+//   2 -> HEAD <-> [key1] <-> TAIL
+//   3 -> HEAD <-> [key4] <-> [key2] <-> TAIL
+//
+// minFreq = 1, so evict key5 (tail of freq=1 list)
+//
+// METHODS:
+// - _updateFrequency(node): Move node from freq bucket to freq+1 bucket
+// - get(key): Return value, increment frequency
+// - put(key, value): Add/update, evict LFU if at capacity
 class LFUCache {
   constructor(capacity) {
-    this.capacity = capacity;
-    this.size = 0;
-    this.minFreq = 0;
-    this.keyToNode = new Map(); //key -> Node
-    this.freqToList = new Map(); // freq -> doublylinkedlist
+    this.capacity = capacity;           // max number of items
+    this.size = 0;                      // current number of items
+    this.minFreq = 1;                   // track lowest frequency for O(1) eviction
+    this.keyToNodeMap = new Map();      // key -> Node for O(1) lookup
+    this.freqToLinkedListMap = new Map(); // freq -> DoublyLinkedList (each freq has its own LRU list)
   }
 
-  // Helper: Update node's frequency (used by both get and put)
-  // 1. Remove from old frequency list
-  // 2. Increment node.freq
-  // 3. Add to new frequency list (create if needed)
-  // 4. Update minFreq if old list is now empty
+  // _updateFrequency(node): Move node from freq bucket to freq+1 bucket
+  // Steps:
+  // 1. Remove from old frequency bucket
+  // 2. If old bucket empty AND it was minFreq -> increment minFreq
+  // 3. Increment node.freq
+  // 4. Add to new frequency bucket (create if doesn't exist)
   _updateFrequency(node) {
-    let oldFreq = node.freq;
-    let oldList = this.freqToList.get(oldFreq);
-    oldList.remove(node);  // remove from old frequency bucket
+    let origFreq = node.freq;
+    let freqList = this.freqToLinkedListMap.get(origFreq);
 
-    // If old list is now empty AND it was the minFreq, increment minFreq
-    if (oldList.isEmpty() && oldFreq === this.minFreq) {
+    // 1. Remove from old frequency bucket
+    freqList.remove(node);
+
+    // 2. If old bucket is now empty AND it was minFreq, increment minFreq
+    if(freqList.isEmpty() && origFreq === this.minFreq){
       this.minFreq++;
     }
 
-    node.freq++;  // increment frequency
+    // 3. Increment node's frequency
+    node.freq++;
 
-    // Add to new frequency bucket (create if doesn't exist)
-    let newFreq = node.freq;
-    if (!this.freqToList.has(newFreq)) {
-      this.freqToList.set(newFreq, new DoublyLinkedList());
+    // 4. Add to new frequency bucket (create if doesn't exist)
+    if(this.freqToLinkedListMap.has(node.freq)){
+      this.freqToLinkedListMap.get(node.freq).addToFront(node);
+    } else{
+      let newFreqList = new DoublyLinkedList();
+      newFreqList.addToFront(node);
+      this.freqToLinkedListMap.set(node.freq, newFreqList);
     }
-    this.freqToList.get(newFreq).addToFront(node);
   }
 
-  // Get value by key, increment frequency
+  // get(key): Return value if exists, increment frequency
+  // Steps:
+  // 1. If key not found -> return -1
+  // 2. Get node from keyToNodeMap
+  // 3. Call _updateFrequency (move to higher freq bucket)
+  // 4. Return node.value
   get(key) {
-    if (!this.keyToNode.has(key)) {
+    if(!this.keyToNodeMap.has(key)){
       return -1;
     }
-    let node = this.keyToNode.get(key);
-    this._updateFrequency(node);  // accessing = increment freq
+    let node = this.keyToNodeMap.get(key);
+    this._updateFrequency(node);  // move to higher frequency bucket
     return node.value;
   }
 
-  // Add or update key-value pair
+  // put(key, value): Add or update key-value pair
+  // Steps:
+  // IF key exists:
+  //   1. Update value
+  //   2. Call _updateFrequency
+  // ELSE (new key):
+  //   1. If at capacity -> evict LFU (removeTail from minFreq bucket)
+  //   2. Create new node, add to keyToNodeMap
+  //   3. Add to freq=1 bucket (create if doesn't exist)
+  //   4. Set minFreq = 1 (new nodes always have freq=1)
   put(key, value) {
-    if (this.capacity === 0) return;
+    // Edge case: capacity 0
+    if(this.capacity === 0){
+      return;
+    }
 
-    if (this.keyToNode.has(key)) {
+    if(this.keyToNodeMap.has(key)){
       // Key exists: update value and increment frequency
-      let node = this.keyToNode.get(key);
+      let node = this.keyToNodeMap.get(key);
       node.value = value;
       this._updateFrequency(node);
-    } else {
+    } else{
       // Key doesn't exist: create new node
 
-      // If at capacity, evict LFU (from minFreq bucket's tail)
-      if (this.size >= this.capacity) {
-        let minFreqList = this.freqToList.get(this.minFreq);
-        let evicted = minFreqList.removeTail();  // LRU within minFreq
-        this.keyToNode.delete(evicted.key);      // remove from keyToNode map
+      // If at capacity, evict LFU (from minFreq bucket's tail = LRU within LFU)
+      if(this.size >= this.capacity){
+        let minFreqList = this.freqToLinkedListMap.get(this.minFreq);
+        let evicted = minFreqList.removeTail();  // get LRU within minFreq
+        this.keyToNodeMap.delete(evicted.key);   // remove from keyToNode map
         this.size--;
       }
 
       // Create new node with freq=1
+      this.size++;
       let node = new Node(key, value);
-      this.keyToNode.set(key, node);
+      this.keyToNodeMap.set(key, node);
 
       // Add to freq=1 bucket (create if doesn't exist)
-      if (!this.freqToList.has(1)) {
-        this.freqToList.set(1, new DoublyLinkedList());
+      if(this.freqToLinkedListMap.has(1)){
+        this.freqToLinkedListMap.get(1).addToFront(node);
+      } else{
+        let linkedList = new DoublyLinkedList();
+        linkedList.addToFront(node);
+        this.freqToLinkedListMap.set(1, linkedList);
       }
-      this.freqToList.get(1).addToFront(node);
 
-      this.minFreq = 1;  // new node always has freq=1, so minFreq resets
-      this.size++;
+      // New nodes always have freq=1, so minFreq resets to 1
+      this.minFreq = 1;
     }
   }
 }
