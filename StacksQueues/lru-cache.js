@@ -57,9 +57,13 @@
  * Time: O(1) for both get and put
  * Space: O(capacity)
  */
+//1) We need a Node and LRUCache classes
+//2) We need a doubly linked list to track the recently used items
+//3) Hashmap to track nodes
+//4) capacity of cache
+//5) size of current cache
+//6 methods: add/remove, put/get
 
-// Node class for Doubly Linked List
-// Stores key (needed for map deletion on eviction), value, and pointers
 class Node {
   constructor(key, value){
     this.key = key;
@@ -71,77 +75,58 @@ class Node {
 
 class LRUCache {
   constructor(capacity){
-    this.capacity = capacity; // max number of items in cache
-    this.size = 0; // current number of items
-    this.map = new Map(); // key -> Node for O(1) lookup
-
-    // Dummy head/tail nodes eliminate null checks in _add/_remove
-    this.head = {next: null, prev: null}; // MRU side (most recently used)
-    this.tail = {next: null, prev: null}; // LRU side (least recently used - evict from here)
-
-    // Connect dummy nodes: HEAD <-> TAIL
+    this.capacity = capacity;
+    this.size = 0;
+    this.head = {next: null, prev: null};
+    this.tail = {next: null, prev: null};
     this.head.next = this.tail;
     this.tail.prev = this.head;
+    this.map = new Map();
   }
-
-  // Add node to front (most recently used position)
-  // Before: HEAD <-> A <-> TAIL
-  // After:  HEAD <-> node <-> A <-> TAIL
-  _add(node){
-    let tempNext = this.head.next; // save reference to old first node
-    this.head.next = node;         // HEAD -> node
-    node.next = tempNext;          // node -> old first
-    node.prev = this.head;         // HEAD <- node
-    tempNext.prev = node;          // node <- old first
+  add(node){
+    let next = this.head.next;
+    this.head.next = node;
+    next.prev = node;
+    node.prev = this.head;
+    node.next = next;
     this.size++;
   }
-
-  // Remove node from anywhere in list (O(1) because we have direct reference)
-  // Before: A <-> node <-> B
-  // After:  A <-> B
-  _remove(node){
-    let tempNext = node.next; // save next neighbor
-    let tempPrev = node.prev; // save prev neighbor
-    tempPrev.next = tempNext; // prev -> next (skip over node)
-    tempNext.prev = tempPrev; // prev <- next (skip over node)
+  remove(node){
+    let previous = node.prev;
+    let next = node.next;
+    previous.next = next;
+    next.prev = previous;
     this.size--;
   }
-
-  // Add or update key-value pair
   put(key, value){
     if(this.map.has(key)){
-      // Key exists: update value and move to front (now most recently used)
       let node = this.map.get(key);
       node.value = value;
-      this._remove(node);
-      this._add(node);
+      this.map.set(key, node);
+      this.remove(node);
+      this.add(node);
     } else{
-      // Key doesn't exist: create new node and add to front
       let node = new Node(key, value);
       this.map.set(key, node);
-      this._add(node);
-
-      // If over capacity, evict LRU (node right before tail)
+      this.add(node);
       if(this.size > this.capacity){
-        let least = this.tail.prev;  // LRU node is right before tail
-        this.map.delete(least.key);  // remove from map first (need the key)
-        this._remove(least);         // then remove from list
+        let latest = this.tail.prev;
+        this.remove(latest);
+        this.map.delete(latest.key);
       }
     }
-  }
 
-  // Get value by key (returns -1 if not found)
+  }
   get(key){
-    if(this.map.has(key)){
-      let node = this.map.get(key);
-      // Move to front (accessing = recently used)
-      this._remove(node);
-      this._add(node);
-      return node.value;
-    } else{
+    if(!this.map.has(key)){
       return -1;
     }
+    let node = this.map.get(key);
+    this.remove(node);
+    this.add(node);
+    return node.value;
   }
+  
 }
 
 // Tests
