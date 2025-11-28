@@ -3,13 +3,13 @@
 ## Overview
 This file tracks my progress through Data Structures and Algorithms problems.
 
-**Total Completed**: 38 problems
+**Total Completed**: 39 problems
 - Arrays: 12/?
 - Linked Lists: 5/5
 - Trees: 6/?
 - Strings: 5/?
 - Dynamic Programming: 4/?
-- Stacks & Queues: 3/?
+- Stacks & Queues: 4/?
 - Graphs: 3/?
 
 ## Repository Structure
@@ -61,6 +61,7 @@ Problems are organized by topic/category:
 - Two-stack queue pattern (lazy transfer)
 - Monotonic stack (next greater/smaller element)
 - Parallel stacks for metadata tracking
+- HashMap + Doubly Linked List for O(1) cache operations (LRU/LFU)
 
 ### Graphs
 - DFS (Depth-First Search) flood fill
@@ -333,7 +334,7 @@ Problems are organized by topic/category:
 
 ---
 
-## Stacks & Queues (3/?)
+## Stacks & Queues (4/?)
 
 ### 🔄 Implement Queue using Stacks
 - **Status**: Return To (Need to review lazy transfer optimization)
@@ -366,6 +367,14 @@ Problems are organized by topic/category:
 - **Pattern**: Monotonic Decreasing Stack
 - **File**: `StacksQueues/daily-temperatures.js`
 - **Note**: Find next warmer temperature for each day. Monotonic stack maintains indices in decreasing temperature order. Iterate backwards: pop indices with temp <= current (they're blocked), top of stack is answer, push current index. Each element pushed/popped once = O(N). Alternative: O(N²) brute force with nested loops is simpler but slower. Key insight: stack only keeps "useful" candidates that could be next warmer day.
+
+### ✅ LRU Cache
+- **Status**: Completed
+- **Difficulty**: Medium
+- **Time**: O(1) for get and put | **Space**: O(capacity)
+- **Pattern**: HashMap + Doubly Linked List
+- **File**: `StacksQueues/lru-cache.js`
+- **Note**: Classic design problem combining two data structures. HashMap provides O(1) key lookup to Node. Doubly Linked List maintains recency order (head = MRU, tail = LRU). Dummy head/tail nodes eliminate null checks. Key operations: _add() inserts at front (MRU), _remove() removes node from anywhere in O(1) using prev/next pointers. On get(): move accessed node to front. On put(): if exists update & move to front; if new add to front and evict LRU (tail.prev) if over capacity. Node stores key (needed for map deletion on eviction), value, prev, and next pointers.
 
 ---
 
@@ -473,6 +482,11 @@ Problems are organized by topic/category:
 - Monotonic decreasing stack: temperatures decrease from bottom to top, used for "next greater element" problems
 - Stack stores indices (not values) when you need to calculate distances or positions
 - Each element pushed/popped at most once in monotonic stack = O(N) total time despite nested while loop
+- LRU Cache: HashMap + Doubly Linked List for O(1) get/put with recency tracking
+- Doubly linked list allows O(1) removal from anywhere (need both prev and next pointers)
+- Dummy head/tail nodes eliminate null checks in linked list operations
+- Node must store key (not just value) so we can delete from HashMap when evicting
+- Cache eviction: remove from both HashMap (by key) and linked list (by reference)
 
 ### Graphs
 - Graph: nodes (vertices) connected by edges, can be directed/undirected, weighted/unweighted
