@@ -71,26 +71,28 @@ class Node {
     this.next = null;
     this.prev = null;
   }
+
 }
 
 class LRUCache {
   constructor(capacity){
     this.capacity = capacity;
     this.size = 0;
-    this.head = {next: null, prev: null};
-    this.tail = {next: null, prev: null};
+    this.head = {prev: null, next: null};
+    this.tail = {prev: null, next: null};
     this.head.next = this.tail;
     this.tail.prev = this.head;
-    this.map = new Map();
+    this.keyToNodeMap = new Map();
   }
   add(node){
     let next = this.head.next;
-    this.head.next = node;
     next.prev = node;
-    node.prev = this.head;
+    this.head.next = node;
     node.next = next;
+    node.prev = this.head;
     this.size++;
   }
+  
   remove(node){
     let previous = node.prev;
     let next = node.next;
@@ -98,35 +100,37 @@ class LRUCache {
     next.prev = previous;
     this.size--;
   }
-  put(key, value){
-    if(this.map.has(key)){
-      let node = this.map.get(key);
-      node.value = value;
-      this.map.set(key, node);
-      this.remove(node);
-      this.add(node);
-    } else{
-      let node = new Node(key, value);
-      this.map.set(key, node);
-      this.add(node);
-      if(this.size > this.capacity){
-        let latest = this.tail.prev;
-        this.remove(latest);
-        this.map.delete(latest.key);
-      }
-    }
 
-  }
   get(key){
-    if(!this.map.has(key)){
+    if(!this.keyToNodeMap.has(key)){
       return -1;
     }
-    let node = this.map.get(key);
+    let node = this.keyToNodeMap.get(key);
     this.remove(node);
     this.add(node);
     return node.value;
   }
-  
+
+  put(key, value){
+    if(this.keyToNodeMap.has(key)){
+      let node = this.keyToNodeMap.get(key);
+      node.value = value;
+      this.remove(node);
+      this.add(node);
+      this.keyToNodeMap.set(key,node);
+    } else{
+      let node = new  Node(key, value);
+      this.keyToNodeMap.set(key, node);
+      this.add(node);
+      if(this.size > this.capacity){
+        let last = this.tail.prev;
+        this.remove(last);
+        this.keyToNodeMap.delete(last.key);
+      }
+    }
+
+  }
+
 }
 
 // Tests
