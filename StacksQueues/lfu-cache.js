@@ -86,13 +86,12 @@ class DoublyLinkedList {
     this.head.next = this.tail;
     this.tail.prev = this.head;
   }
-
   add(node){
     let next = this.head.next;
+    next.prev = node;
     this.head.next = node;
     node.prev = this.head;
     node.next = next;
-    next.prev = node;
   }
 
   remove(node){
@@ -100,106 +99,87 @@ class DoublyLinkedList {
     let next = node.next;
     previous.next = next;
     next.prev = previous;
-
   }
 
   removeTail(){
-    let previous = this.tail.prev;
-    this.remove(previous);
-    return previous;
+    let node = this.tail.prev;
+    this.remove(node);
+    return node;
   }
 
   isEmpty(){
     return this.head.next === this.tail && this.tail.prev === this.head;
   }
-
 }
 
 class LFUCache {
   constructor(capacity){
     this.capacity = capacity;
     this.size = 0;
+    this.keyToNodeMap = new Map();
+    this.freqToLinkedListMap = new Map();
     this.minFreq = 1;
-    this.keyMap = new Map();
-    this.freqMap = new Map();
   }
-
   _updateFrequency(node){
-    //get the original frequency
-    let originalFreq = node.frequency;
-    let removeLinkedList = this.freqMap.get(originalFreq);
-    //remove it from the linked list
-    removeLinkedList.remove(node);
-    //check if the size of the linked list is 0 and hte minFreq is the original frequency
-    //delete it and increment hte minFreq
-    if(removeLinkedList.isEmpty() && originalFreq === this.minFreq){
-      this.freqMap.delete(originalFreq);
+    let originalFrequency = node.frequency;
+    let originalLinkedList = this.freqToLinkedListMap.get(originalFrequency);
+    originalLinkedList.remove(node);
+    if(originalLinkedList.isEmpty() && originalFrequency == this.minFreq){
+      this.freqToLinkedListMap.delete(originalFrequency);
       this.minFreq++;
     }
-    //increment node Frequency
+
     node.frequency++;
-    //add it or update it if exists in freq map
-    if(this.freqMap.has(node.frequency)){
-      let addedLinkedList = this.freqMap.get(node.frequency);
-      addedLinkedList.add(node);
+    if(this.freqToLinkedListMap.has(node.frequency)){
+      let existingLinkedList = this.freqToLinkedListMap.get(node.frequency);
+      existingLinkedList.add(node);
     } else{
       let newLinkedList = new DoublyLinkedList();
       newLinkedList.add(node);
-      this.freqMap.set(node.frequency,newLinkedList);
+      this.freqToLinkedListMap.set(node.frequency, newLinkedList);
     }
-
-  }
-
-  put(key, value){
-
-    //check capcity of 0
-    if(this.capacity === 0){
-      return;
-    }
-    //if exists already update the value and the frequency
-    if(this.keyMap.has(key)){
-      let node = this.keyMap.get(key);
-      node.value = value;
-      this.keyMap.set(key, node);
-      this._updateFrequency(node);
-    } else{
-      if(this.size >= this.capacity){
-        let linkedList = this.freqMap.get(this.minFreq);
-        let evictedNode = linkedList.removeTail();
-        this.keyMap.delete(evictedNode.key);
-        this.size--;
-      }
-      let node = new Node(key, value);
-      this.keyMap.set(key, node);
-      if(this.freqMap.has(1)){
-        let linkedList = this.freqMap.get(1);
-        linkedList.add(node);
-      } else{
-        let linkedList = new DoublyLinkedList();
-        linkedList.add(node);
-        this.freqMap.set(1, linkedList);
-      }
-
-      this.size++;
-      this.minFreq = 1;
-    }
-    //if it doesnt exist, check if capacity is exceeded
-    //evict from minfreq and the tail
-    //evict from keyMap
-    //create new node
-    //check if freq linked list exists
-    //if it doesnt create it and add it to both maps
-    //if it does update it
   }
 
   get(key){
-    if(!this.keyMap.has(key)){
+    if(!this.keyToNodeMap.has(key)){
       return -1;
-    } 
-    let node = this.keyMap.get(key);
-    this._updateFrequency(node)
+    }
+    let node = this.keyToNodeMap.get(key);
+    this._updateFrequency(node);
     return node.value;
   }
+
+  put(key, value){
+    if(this.capacity === 0){
+      return;
+    }
+    if(this.keyToNodeMap.has(key)){
+      let node = this.keyToNodeMap.get(key);
+      node.value = value;
+      this.keyToNodeMap.set(key, node);
+      this._updateFrequency(node);
+    } else{
+      if(this.size >= this.capacity){
+        let linkedList = this.freqToLinkedListMap.get(this.minFreq);
+        let lastUsedNode = linkedList.removeTail();
+        this.keyToNodeMap.delete(lastUsedNode.key);
+        this.size--;
+      }
+      let node = new Node(key, value);
+      if(this.freqToLinkedListMap.has(1)){
+        let existingLinkedList = this.freqToLinkedListMap.get(1);
+        existingLinkedList.add(node);
+      } else{
+        let newLinkedList = new DoublyLinkedList();
+        newLinkedList.add(node);
+        this.freqToLinkedListMap.set(1, newLinkedList);
+      }
+      this.keyToNodeMap.set(key, node);
+      this.minFreq = 1;
+      this.size++;
+    }
+  }
+
 }
 
 // Tests
