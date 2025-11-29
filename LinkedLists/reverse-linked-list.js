@@ -33,19 +33,21 @@ class ListNode {
 }
 
 function reverseList(head) {
-  if(head == null){
+  if(head === null){
     return null;
   }
-  let node = head;
-  // Your code here
+
   let prev = null;
+  let node = head;
   while(node !== null){
     let next = node.next;
     node.next = prev;
     prev = node;
     node = next;
   }
+
   return prev;
+
 }
 
 // Helper function to create linked list from array
