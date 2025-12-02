@@ -33,10 +33,6 @@ class ListNode {
 }
 
 function reverseList(head) {
-  if(head === null){
-    return null;
-  }
-
   let prev = null;
   let node = head;
   while(node !== null){
