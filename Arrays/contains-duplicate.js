@@ -21,26 +21,22 @@
  * - -10^9 <= nums[i] <= 10^9
  *
  * Target Complexity:
- * Time: O(?)
- * Space: O(?)
+ * Time: O(N): loop through the array of size n once
+ * Space: O(N): set grows proprotionaly with n until a duplicate is found
  */
 
 function containsDuplicate(nums) {
-  // Your solution here
-  if(nums.length <= 0){
-    return false;
-  }
   let set = new Set();
   for(let i =0;i<nums.length;i++){
     if(set.has(nums[i])){
       return true;
+    } else{
+      set.add(nums[i]);
     }
-    set.add(nums[i]);
   }
   return false;
+
 }
-//Time: O(N) loops through the array once at its worst
-//Space: O(N) set can increase in size to the size of the array at worst
 
 // Tests
 console.log(containsDuplicate([1,2,3,1])); // true
