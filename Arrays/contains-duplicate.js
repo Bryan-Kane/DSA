@@ -27,19 +27,20 @@
 
 function containsDuplicate(nums) {
   let set = new Set();
+  let results = [];
   for(let i =0;i<nums.length;i++){
     if(set.has(nums[i])){
-      return true;
+      results.push(nums[i]);
     } else{
       set.add(nums[i]);
     }
   }
-  return false;
+  return results;
 
 }
 
 // Tests
-console.log(containsDuplicate([1,2,3,1])); // true
-console.log(containsDuplicate([1,2,3,4])); // false
-console.log(containsDuplicate([1,1,1,3,3,4,3,2,4,2])); // true
-console.log(containsDuplicate([1])); // false
+console.log(containsDuplicate([1,2,3,1])); // [1]
+console.log(containsDuplicate([1,2,3,4])); // []
+console.log(containsDuplicate([1,1,1,3,3,4,3,2,4,2])); // [1,3,4,2]
+console.log(containsDuplicate([1])); // []
