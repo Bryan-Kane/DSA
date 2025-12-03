@@ -30,9 +30,6 @@
  */
 
 function longestPalindrome(s) {
-    if(s.length === 0){
-        return 0;
-    }
     let maxLength = 1;
     function expand(left, right){
         while(left >= 0 && right < s.length && s[left] === s[right]){
@@ -42,14 +39,14 @@ function longestPalindrome(s) {
         return right - left - 1;
     }
 
-    for(let i =0;i<s.length;i++){
-        let odd = expand(i,i);
-        let even = expand(i, i +1);
-
+    for(let i=0;i<s.length;i++){
+        let odd=expand(i,i);
+        let even = expand(i, i+1);
         maxLength = Math.max(maxLength,odd,even);
     }
 
     return maxLength;
+
 }
 
 // Tests
