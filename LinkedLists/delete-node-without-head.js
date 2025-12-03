@@ -34,7 +34,8 @@ class ListNode {
 }
 
 function deleteNode(node) {
-  node.val = node.next.val;
+  let next = node.next;
+  node.val = next.val;
   node.next = node.next.next;
 
 }
