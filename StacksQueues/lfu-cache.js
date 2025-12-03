@@ -68,45 +68,47 @@
  */
 
 class Node {
-  constructor(key, value) {
+  constructor(key, value){
     this.key = key;
     this.value = value;
     this.frequency = 1;
   }
+
 }
 
 class DoublyLinkedList {
-  constructor() {
-    this.head = { prev: null, next: null };
-    this.tail = { prev: null, next: null };
+  constructor(){
+    this.head = {prev: null, next: null};
+    this.tail = {prev: null, next: null};
     this.head.next = this.tail;
-    this.tail.prev = this.head;
+    this.tail.prev = this.head; 
   }
-
-  add(node) {
+  add(node){
     let next = this.head.next;
-    this.head.next = node;
     next.prev = node;
-    node.next = next;
+    this.head.next = node;
     node.prev = this.head;
+    node.next = next;
   }
-
-  remove(node) {
+  remove(node){
     let prev = node.prev;
     let next = node.next;
     prev.next = next;
     next.prev = prev;
   }
-
-  removeTail() {
-    let previous = this.tail.prev;
-    this.remove(previous);
-    return previous;
+  removeTail(){
+    let remove = this.tail.prev;
+    this.remove(remove);
+    return remove;
   }
 
   isEmpty(){
-    return this.head.next === this.tail && this.tail.prev === this.head;
+    if(this.head.next === this.tail && this.tail.prev === this.head){
+      return true;
+    }
+    return false;
   }
+
 }
 
 class LFUCache {
@@ -115,35 +117,35 @@ class LFUCache {
     this.size = 0;
     this.minFreq = 1;
     this.keyToNodeMap = new Map();
-    this.freqToLinkedListMap = new Map();
+    this.freqToLinkedMap = new Map();
   }
+
   _updateFrequency(node){
-    let originalFrequency = node.frequency;
-    let originalFrequencyMap = this.freqToLinkedListMap.get(originalFrequency);
-    originalFrequencyMap.remove(node);
-    if(originalFrequencyMap.isEmpty() && this.minFreq == originalFrequency){
+    let originalFreq = node.frequency;
+    let originalFreqList = this.freqToLinkedMap.get(originalFreq);
+    originalFreqList.remove(node);
+    if(this.minFreq === originalFreq && originalFreqList.isEmpty()){
+      this.freqToLinkedMap.delete(originalFreq);
       this.minFreq++;
-      this.freqToLinkedListMap.delete(originalFrequency);
     }
     node.frequency++;
-    if(this.freqToLinkedListMap.has(node.frequency)){
-      let updateLinkedList = this.freqToLinkedListMap.get(node.frequency);
-      updateLinkedList.add(node);
-    }else{
-      let newLinkedList = new DoublyLinkedList();
-      newLinkedList.add(node);
-      this.freqToLinkedListMap.set(node.frequency,newLinkedList);
+    if(this.freqToLinkedMap.has(node.frequency)){
+      let updateList = this.freqToLinkedMap.get(node.frequency);
+      updateList.add(node);
+    } else{
+      let linkedList = new DoublyLinkedList();
+      linkedList.add(node);
+      this.freqToLinkedMap.set(node.frequency, linkedList);
     }
   }
 
   get(key){
-    if(this.keyToNodeMap.has(key)){
-      let node = this.keyToNodeMap.get(key);
-      this._updateFrequency(node);
-      return node.value;
-    } else{
-      return -1; //miss
+    if(!this.keyToNodeMap.has(key)){
+      return -1;
     }
+    let node = this.keyToNodeMap.get(key);
+    this._updateFrequency(node);
+    return node.value;
   }
 
   put(key, value){
@@ -153,29 +155,27 @@ class LFUCache {
     if(this.keyToNodeMap.has(key)){
       let node = this.keyToNodeMap.get(key);
       node.value = value;
-      this.keyToNodeMap.set(key, node);
       this._updateFrequency(node);
     } else{
       if(this.size >= this.capacity){
-        let evictionList = this.freqToLinkedListMap.get(this.minFreq);
-        let removed = evictionList.removeTail();
-        this.keyToNodeMap.delete(removed.key);
+        let linkedList = this.freqToLinkedMap.get(this.minFreq);
+        let node = linkedList.removeTail();
+        this.keyToNodeMap.delete(node.key);
         this.size--;
       }
       let node = new Node(key, value);
       this.keyToNodeMap.set(key, node);
-      if(this.freqToLinkedListMap.has(1)){
-        let existingLinkedList = this.freqToLinkedListMap.get(1);
-        existingLinkedList.add(node);
+      if(this.freqToLinkedMap.has(1)){
+        let linkedList = this.freqToLinkedMap.get(1);
+        linkedList.add(node);
       } else{
-        let newLinkedList = new DoublyLinkedList();
-        newLinkedList.add(node);
-        this.freqToLinkedListMap.set(1, newLinkedList);
+        let linkedList = new DoublyLinkedList();
+        linkedList.add(node);
+        this.freqToLinkedMap.set(1,linkedList);
       }
-      this.minFreq = 1;
       this.size++;
+      this.minFreq = 1;
     }
-
   }
 
 }

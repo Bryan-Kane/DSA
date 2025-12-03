@@ -57,15 +57,8 @@
  * Time: O(1) for both get and put
  * Space: O(capacity)
  */
-//1) We need a Node and LRUCache classes
-//2) We need a doubly linked list to track the recently used items
-//3) Hashmap to track nodes
-//4) capacity of cache
-//5) size of current cache
-//6 methods: add/remove, put/get
-
 class Node {
-  constructor(key, value){
+  constructor(key, value) {
     this.key = key;
     this.value = value;
     this.next = null;
@@ -75,34 +68,41 @@ class Node {
 }
 
 class LRUCache {
-  constructor(capacity){
+  constructor(capacity) {
     this.capacity = capacity;
     this.size = 0;
-    this.head = {prev: null, next: null};
-    this.tail = {prev: null, next: null};
+    this.keyToNodeMap = new Map();
+    this.head = { prev: null, next: null };
+    this.tail = { prev: null, next: null };
     this.head.next = this.tail;
     this.tail.prev = this.head;
-    this.keyToNodeMap = new Map();
   }
-  add(node){
+
+  add(node) {
     let next = this.head.next;
-    next.prev = node;
     this.head.next = node;
-    node.next = next;
+    next.prev = node;
     node.prev = this.head;
+    node.next = next;
     this.size++;
   }
-  
-  remove(node){
-    let previous = node.prev;
+
+  remove(node) {
+    let prev = node.prev;
     let next = node.next;
-    previous.next = next;
-    next.prev = previous;
+    prev.next = next;
+    next.prev = prev;
     this.size--;
   }
 
-  get(key){
-    if(!this.keyToNodeMap.has(key)){
+  removeLast() {
+    let last = this.tail.prev;
+    this.remove(last);
+    return last;
+  }
+
+  get(key) {
+    if (!this.keyToNodeMap.has(key)) {
       return -1;
     }
     let node = this.keyToNodeMap.get(key);
@@ -111,25 +111,27 @@ class LRUCache {
     return node.value;
   }
 
-  put(key, value){
-    if(this.keyToNodeMap.has(key)){
+  put(key, value) {
+    if (this.capacity === 0) {
+      return;
+    }
+    if (this.keyToNodeMap.has(key)) {
       let node = this.keyToNodeMap.get(key);
       node.value = value;
+      this.keyToNodeMap.set(key, node);
       this.remove(node);
       this.add(node);
-      this.keyToNodeMap.set(key,node);
-    } else{
-      let node = new  Node(key, value);
+    } else {
+      let node = new Node(key, value);
       this.keyToNodeMap.set(key, node);
       this.add(node);
-      if(this.size > this.capacity){
-        let last = this.tail.prev;
-        this.remove(last);
+      if (this.size > this.capacity) {
+        let last = this.removeLast();
         this.keyToNodeMap.delete(last.key);
       }
     }
-
   }
+
 
 }
 
