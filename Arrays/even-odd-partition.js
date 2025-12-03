@@ -33,7 +33,7 @@
 
 function evenOddPartition(arr) {
   if(arr.length <= 1){
-    return true;
+    return arr;
   }
   let left = 0;
   let right = arr.length - 1;
@@ -45,15 +45,26 @@ function evenOddPartition(arr) {
       left++;
       right--;
     }
-    while(left < right && arr[left] % 2 === 0){
+    while(arr[left] % 2 === 0 && left < right){
       left++;
     }
-    while(left < right && arr[right] % 2 !== 0){
+    while(arr[right] % 2 !== 0 && right > left){
       right--;
     }
   }
   return arr;
 
+}
+
+function evenOddPartitionSorted(arr){
+  if(arr.length <= 1){
+    return arr;
+  }
+  let evens = arr.filter(x=>x % 2 == 0).sort((a,b) => a - b);
+  let odds = arr.filter(x=>x % 2 !== 0).sort((a,b) => a - b);
+
+  return [...evens,...odds];
+  
 }
 
 // Tests
